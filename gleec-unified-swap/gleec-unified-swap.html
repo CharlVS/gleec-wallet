@@ -321,8 +321,10 @@
   border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
-.wallet-logo { display: flex; align-items: center; gap: 10px; color: var(--text); }
+.wallet-logo { display: flex; align-items: center; gap: 9px; color: var(--text); min-width: 0; }
 .wallet-logo img { display: block; height: 32px; width: auto; max-width: 112px; }
+.wallet-logo .wallet-logo-icon { width: 24px; height: 32px; flex: none; }
+.wallet-wordmark { display: block; min-width: 0; }
 .wallet-logo .logo-light { display: none; }
 #gleec-unified-swap-spec[data-theme="light"] .wallet-logo .logo-dark { display: none; }
 #gleec-unified-swap-spec[data-theme="light"] .wallet-logo .logo-light { display: block; }
@@ -543,6 +545,32 @@
 .wallet-review-section h3 { margin-bottom: 12px; }
 .wallet-detail-row { display: flex; justify-content: space-between; gap: 18px; padding: 6px 0; color: var(--text-secondary); }
 .wallet-detail-row b { color: var(--text); text-align: right; overflow-wrap: anywhere; }
+.wallet-review-summary { display: grid; gap: 14px; padding: 16px; border: 1px solid var(--control-border); border-radius: 18px; background: var(--surface-raised); }
+.wallet-review-leg { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 12px; align-items: center; min-width: 0; }
+.wallet-review-leg-copy { min-width: 0; }
+.wallet-review-leg-copy span { display: block; color: var(--text-tertiary); font-size: .78em; font-weight: 700; }
+.wallet-review-leg-copy strong { display: block; margin-top: 2px; font-size: 1.12em; overflow-wrap: anywhere; }
+.wallet-review-leg-copy small { display: block; margin-top: 3px; color: var(--text-secondary); overflow-wrap: anywhere; }
+.wallet-review-route { display: grid; grid-template-columns: 1fr 32px 1fr; gap: 8px; align-items: center; color: var(--text-tertiary); font-size: .78em; }
+.wallet-review-route::before,
+.wallet-review-route::after { content: ""; height: 1px; background: var(--border); }
+.wallet-review-route i { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--selected); color: var(--brand-hover); }
+.wallet-protection { display: flex; gap: 12px; align-items: flex-start; margin-top: 14px; padding: 14px; border: 1px solid var(--success); border-radius: 14px; background: var(--success-bg); color: var(--text-secondary); }
+.wallet-protection i { color: var(--success); font-size: 1.2em; margin-top: 1px; }
+.wallet-protection b { display: block; color: var(--text); margin-top: 2px; }
+.wallet-decision-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin-top: 14px; }
+.wallet-decision-fact { min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.wallet-decision-fact span { display: block; color: var(--text-tertiary); font-size: .75em; }
+.wallet-decision-fact b { display: block; margin-top: 5px; color: var(--text); overflow-wrap: anywhere; }
+.wallet-permission { display: flex; gap: 12px; align-items: flex-start; margin-top: 14px; padding: 14px; border: 1px solid var(--info); border-radius: 14px; background: var(--info-bg); color: var(--text-secondary); }
+.wallet-permission i { color: var(--info); font-size: 1.2em; margin-top: 1px; }
+.wallet-permission b { display: block; color: var(--text); }
+.wallet-permission p { margin-top: 3px; }
+.wallet-review-footer { margin-top: 18px; padding: 12px 0 calc(4px + env(safe-area-inset-bottom)); background: var(--canvas); }
+.wallet-review-footer .wallet-primary { margin-top: 0; }
+.wallet-frame[data-vp="375"] .wallet-review-footer,
+.wallet-frame[data-vp="390"] .wallet-review-footer,
+.wallet-frame[data-vp="768"] .wallet-review-footer { position: sticky; bottom: -32px; z-index: 4; margin: 18px -16px -32px; padding: 14px 16px calc(14px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); box-shadow: 0 -14px 26px color-mix(in srgb,var(--canvas) 78%,transparent); }
 .wallet-warning { display: flex; gap: 12px; padding: 14px; border-radius: 14px; background: var(--warning-bg); border: 1px solid var(--warning); color: var(--text-secondary); margin-top: 12px; }
 .wallet-warning i { color: var(--warning); font-size: 1.2em; }
 .wallet-warning-list { display: grid; gap: 10px; margin-top: 12px; }
@@ -612,11 +640,15 @@
 .wallet-frame[data-scale="2"] .wallet-quote-action { grid-column: 1; align-items: flex-start; flex-direction: column; }
 .wallet-frame[data-scale="2"] .wallet-option-metrics { grid-template-columns: 1fr; }
 .wallet-frame[data-scale="2"] .wallet-detail-row b { text-align: left; }
+.wallet-frame[data-scale="2"] .wallet-decision-grid { grid-template-columns: 1fr; }
+.wallet-frame[data-scale="2"] .wallet-review-leg { align-items: flex-start; }
+.wallet-frame[data-scale="2"] .wallet-review-leg strong { font-size: 1em; }
+.wallet-frame[data-scale="2"] .wallet-copy-line { grid-template-columns: 1fr; }
 .wallet-frame[data-scale="2"] .wallet-picker-row,
 .wallet-frame[data-scale="2"] .wallet-activity-row { grid-template-columns: auto minmax(0,1fr); align-items: start; }
 .wallet-frame[data-scale="2"] .wallet-row-meta { grid-column: 2; text-align: left; }
 .wallet-frame[data-scale="2"] .wallet-bottom-nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.wallet-frame[data-scale="2"] .wallet-bottom-nav .wallet-nav-item { width: 100%; min-width: 0; padding-inline: 2px; overflow-wrap: anywhere; font-size: .78em; line-height: 1.1; }
+.wallet-frame[data-scale="2"] .wallet-bottom-nav .wallet-nav-item { width: 100%; min-width: 0; padding-inline: 1px; overflow-wrap: normal; white-space: nowrap; font-size: .7em; line-height: 1.1; }
 .wallet-frame[data-scale="2"] .wallet-bottom-nav .wallet-nav-item i { font-size: 1.35em; }
 .wallet-frame[data-scale="2"] input[type="checkbox"] { width: 28px; height: 28px; flex: none; }
 
@@ -661,6 +693,16 @@
 .responsive-card { padding: 14px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
 .responsive-card b { display: block; }
 .responsive-card small { display: block; color: var(--text-tertiary); margin-top: 6px; }
+.gus-choice-groups { display: grid; gap: 16px; }
+.gus-choice-group { display: grid; gap: 8px; }
+.gus-choice-group > span { color: var(--text-tertiary); font-size: .78rem; font-weight: 700; }
+.gus-choice-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.gus-choice-button,
+.responsive-card { position: relative; min-height: 48px; text-align: left; }
+.gus-choice-button[aria-pressed="true"],
+.responsive-card[aria-pressed="true"] { border-color: var(--brand); background: var(--selected); color: var(--text); box-shadow: inset 0 0 0 1px var(--brand); }
+.gus-choice-check { margin-left: auto; color: var(--brand-hover); }
+.responsive-card .gus-choice-check { position: absolute; top: 10px; right: 10px; }
 .check-matrix { width: 100%; border-collapse: collapse; }
 .check-matrix th, .check-matrix td { padding: 10px; text-align: left; border-bottom: 1px solid var(--border); }
 .check-matrix th { color: var(--text-tertiary); font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; }
@@ -738,6 +780,58 @@
     ['07','Recovery & Outcomes'], ['08','Responsive & Accessibility'], ['09','Prototype & Handoff']
   ];
 
+  function createQuoteEvaluationController({
+    schedule,
+    cancelScheduled,
+    onTransition,
+    completionDelay = 450,
+    timeoutDelay = 4000
+  }) {
+    let revision = 0;
+    let current = null;
+    let completionHandle = null;
+    let timeoutHandle = null;
+
+    function clearScheduledWork() {
+      if (completionHandle !== null) cancelScheduled(completionHandle);
+      if (timeoutHandle !== null) cancelScheduled(timeoutHandle);
+      completionHandle = null;
+      timeoutHandle = null;
+    }
+
+    function emit(request, status) {
+      if (!current || current.status !== 'checking' || request.revision !== current.revision || request.intentKey !== current.intentKey) return false;
+      const terminal = status !== 'checking';
+      if (terminal) clearScheduledWork();
+      current = {...request,status};
+      onTransition({...current});
+      return true;
+    }
+
+    function begin({intentKey, outcome = 'quoted-multiple', target = 'entry', delay = completionDelay} = {}) {
+      clearScheduledWork();
+      const request = {revision:++revision,intentKey:String(intentKey || ''),outcome,target};
+      current = {...request,status:'checking'};
+      onTransition({...current});
+      if (Number.isFinite(delay)) completionHandle = schedule(()=>emit(request,outcome),Math.max(0,delay));
+      timeoutHandle = schedule(()=>emit(request,'quote-timeout'),Math.max(0,timeoutDelay));
+      return request.revision;
+    }
+
+    function cancel() {
+      clearScheduledWork();
+      revision += 1;
+      current = null;
+      return revision;
+    }
+
+    function snapshot() {
+      return current ? {...current} : null;
+    }
+
+    return Object.freeze({begin,cancel,snapshot});
+  }
+
   const state = {
     section: 0,
     theme: 'dark',
@@ -781,6 +875,11 @@
     recoveryFeedback: '',
     supportSubmitted: false,
     executionConsent: null,
+    quoteRevision: 0,
+    quoteIntentKey: null,
+    quoteTarget: 'entry',
+    reviewReturnState: 'cross-chain-native',
+    pendingStartAfterRevalidation: false,
     flow: null,
     flowStep: 0
   };
@@ -942,10 +1041,10 @@
   ];
 
   function brandLogo(compact, subtitle) {
-    const icon = `<img src="gleec-unified-swap-assets/logo/icon.svg" width="27" height="36" alt="">`;
-    if (subtitle) return `${icon}<div class="gus-brand-copy"><strong>Gleec Unified Swap</strong><span>${escapeHtml(subtitle)}</span></div>`;
-    if (compact) return `<div class="wallet-logo">${icon}</div>`;
-    return `<div class="wallet-logo"><img class="logo-dark" src="gleec-unified-swap-assets/logo/logo_dark.svg" width="112" height="32" alt="Gleec"><img class="logo-light" src="gleec-unified-swap-assets/logo/logo.svg" width="112" height="32" alt="Gleec"></div>`;
+    const icon = `<img class="wallet-logo-icon" src="gleec-unified-swap-assets/logo/icon.svg" width="24" height="32" alt="">`;
+    if (subtitle) return `<span role="img" aria-label="Gleec">${icon}</span><div class="gus-brand-copy"><strong>Gleec Unified Swap</strong><span>${escapeHtml(subtitle)}</span></div>`;
+    if (compact) return `<div class="wallet-logo" role="img" aria-label="Gleec">${icon}</div>`;
+    return `<div class="wallet-logo" role="img" aria-label="Gleec">${icon}<span class="wallet-wordmark"><img class="logo-dark" src="gleec-unified-swap-assets/logo/logo_dark.svg" width="112" height="32" alt=""><img class="logo-light" src="gleec-unified-swap-assets/logo/logo.svg" width="112" height="32" alt=""></span></div>`;
   }
 
   document.getElementById('gus-brand').innerHTML = brandLogo(false, 'Complete Calm Core design specification');
@@ -955,7 +1054,7 @@
     ['below-minimum','Below minimum'],['insufficient','Insufficient'],['max','Gas-aware Max'],['capabilities','Capabilities loading'],
     ['checking','Checking quote'],['quoted-single','Single option'],['quoted-multiple','Multiple options'],['invalid-recipient','Invalid recipient'],
     ['inactive','Inactive asset'],['unsupported','Unsupported signer'],['offline','Offline / stale'],['rate-limited','Rate limited'],
-    ['no-route','No route'],['expiring','Expiring quote'],['expired','Expired quote'],['high-price-impact','High price impact'],
+    ['service-error','Quote service error'],['quote-timeout','Quote timeout'],['no-route','No route'],['expiring','Expiring quote'],['expired','Expired quote'],['high-price-impact','High price impact'],
     ['low-liquidity','Low liquidity'],['suspicious-token','Suspicious token'],['unknown-token','Unknown token'],
     ['price-estimate-unavailable','Price estimate unavailable']
   ];
@@ -971,7 +1070,7 @@
     ['direct-atomic','Direct exchange'],['same-chain-native','Same-chain native'],['cross-chain-native','Cross-chain native'],
     ['exact-approval','ERC-20 exact approval'],['allowance-reset','Allowance reset'],['sufficient-allowance','Sufficient allowance'],
     ['mixed-pre','Mixed pre'],['mixed-post','Mixed post'],['mixed-both','Mixed both'],['external-recipient','External recipient'],['fresh-recovery','Fresh recovery consent'],
-    ['expired','Expired in review'],['material-update','Material update'],['reduced-assurance','Unsupported / reduced assurance']
+    ['revalidating','Revalidating quote'],['revalidation-failed','Revalidation failed'],['expired','Expired in review'],['material-update','Material update'],['reduced-assurance','Unsupported / reduced assurance']
   ];
   const progressStates = [
     ['planned','Preparing'],['awaiting-approval','Approval required'],['resetting','Resetting allowance'],['approving','Approving exact amount'],
@@ -1005,7 +1104,7 @@
   }
 
   function stateButtons(items, active, key) {
-    return `<div class="gus-state-list">${items.map(([value,label]) => `<button type="button" class="gus-state-button" data-state-key="${key}" data-state-value="${value}" aria-pressed="${active === value}">${escapeHtml(label)}</button>`).join('')}</div>`;
+    return `<div class="gus-state-list">${items.map(([value,label]) => `<button type="button" class="gus-state-button" data-state-key="${key}" data-state-value="${value}" data-focus-key="state-${key}-${value}" aria-pressed="${active === value}">${escapeHtml(label)}</button>`).join('')}</div>`;
   }
 
   function walletHeader(active) {
@@ -1055,14 +1154,48 @@
     return `<div class="preview-canvas"><div class="preview-caption"><span>${escapeHtml(caption)}</span><span>True ${state.viewport}px canvas · ${state.theme} · ${state.scale === 2 ? '200% text' : '100% text'} · ${state.motion === 'reduced' ? 'reduced motion' : 'standard motion'}</span></div>${walletFrame(content,'swap',mapping,hasSheet)}<div class="wallet-model-note"><b>Handoff mapping:</b> ${escapeHtml(mapping || 'Presentation state')}</div></div>`;
   }
 
+  function numericAmount(value) {
+    const match = String(value ?? '').replaceAll(',','').match(/[0-9.]+/);
+    return Number(match?.[0] || 0);
+  }
+
+  function formatTokenAmount(value, asset) {
+    const maximumFractionDigits = ['BTC','WBTC','ETH'].includes(asset) ? 5 : 2;
+    const minimumFractionDigits = ['USDC','USDT'].includes(asset) ? 2 : 0;
+    return Number(value).toLocaleString('en-US',{minimumFractionDigits,maximumFractionDigits});
+  }
+
+  function formatFiatAmount(value) {
+    return `$${Number(value).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  }
+
+  function quoteFixtureForCurrentIntent(canonical, selectedOption = canonical.options?.best) {
+    const option = selectedOption || canonical.options?.best;
+    const expectedAmount = numericAmount(option?.expected || canonical.receive.display);
+    const minimumAmount = numericAmount(option?.minimum || canonical.receive.minimum);
+    const canonicalReceiveAmount = numericAmount(canonical.receive.amount) || 1;
+    const canonicalPayAmount = numericAmount(canonical.pay.amount) || 1;
+    const requestedPayAmount = numericAmount(state.amountDraft ?? canonical.pay.amount) || canonicalPayAmount;
+    const ratio = requestedPayAmount / canonicalPayAmount;
+    const receiveAmount = expectedAmount * ratio;
+    const receiveMinimum = minimumAmount * ratio;
+    const payFiat = numericAmount(canonical.pay.fiat) * ratio;
+    const receiveFiat = numericAmount(canonical.receive.fiat) * (expectedAmount / canonicalReceiveAmount) * ratio;
+    const networkCost = Number(option?.networkCost ?? canonical.fees.networkCost);
+    const swapCost = Number(option?.swapCost ?? canonical.fees.swapCost) * ratio;
+    return {
+      ...canonical,
+      pay:{...canonical.pay,amount:String(state.amountDraft ?? canonical.pay.amount),display:`${formatTokenAmount(requestedPayAmount,canonical.pay.asset)} ${canonical.pay.asset}`,fiat:formatFiatAmount(payFiat)},
+      receive:{...canonical.receive,amount:formatTokenAmount(receiveAmount,canonical.receive.asset),display:`${formatTokenAmount(receiveAmount,canonical.receive.asset)} ${canonical.receive.asset}`,minimum:`${formatTokenAmount(receiveMinimum,canonical.receive.asset)} ${canonical.receive.asset}`,fiat:formatFiatAmount(receiveFiat)},
+      fees:{...canonical.fees,networkCost,swapCost,totalCost:networkCost+swapCost,maximumNetworkCost:Number(option?.maximumNetworkCost ?? canonical.fees.maximumNetworkCost)},
+      eta:option?.eta || canonical.eta
+    };
+  }
+
   function entryConfig(name) {
     const canonical = journeyFixtures[state.activeJourney] || journeyFixtures['cross-chain'];
     const selectedOption = canonical.options?.[state.selectedOption] || canonical.options?.best;
-    const expectedAmount = Number(String(selectedOption?.expected || '').replaceAll(',','').match(/[0-9.]+/)?.[0] || 0);
-    const canonicalAmount = Number(String(canonical.receive.amount).replaceAll(',','').match(/[0-9.]+/)?.[0] || 0);
-    const canonicalFiat = Number(String(canonical.receive.fiat).replace(/[^0-9.]/g,'') || 0);
-    const optionFiat = expectedAmount && canonicalAmount && canonicalFiat ? `$${(canonicalFiat * expectedAmount / canonicalAmount).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}` : canonical.receive.fiat;
-    const fixture = selectedOption ? {...canonical,receive:{...canonical.receive,amount:String(selectedOption.expected).split(' ')[0],display:selectedOption.expected,minimum:selectedOption.minimum,fiat:optionFiat},fees:{...canonical.fees,networkCost:selectedOption.networkCost,swapCost:selectedOption.swapCost,totalCost:selectedOption.totalCost,maximumNetworkCost:selectedOption.maximumNetworkCost},eta:selectedOption.eta} : canonical;
+    const fixture = quoteFixtureForCurrentIntent(canonical,selectedOption);
     const payIdentity = state.selectedPay || fixture.pay;
     const receiveIdentity = state.selectedReceive || fixture.receive;
     const sourceAddress = state.selectedSourceAddress || {label:fixture.pay.address.split(' · ')[0],short:fixture.pay.address.split(' · ')[1] || fixture.pay.address,full:fixture.pay.fullAddress,balance:fixture.pay.balance,fiat:fixture.pay.fiat};
@@ -1070,17 +1203,19 @@
     const payAddress = `${sourceAddress.label ? `${sourceAddress.label} · ` : ''}${sourceAddress.short}`;
     const recipientAddress = `${recipient.external?'External · ':''}${recipient.short}`;
     const sourceBalance = sourceAddress.balances?.[payIdentity.asset]?.[0] || sourceAddress.balance || payIdentity.balance || fixture.pay.balance;
-    const changedAsset = Boolean((state.selectedPay && (state.selectedPay.asset!==fixture.pay.asset || state.selectedPay.network!==fixture.pay.network)) || (state.selectedReceive && (state.selectedReceive.asset!==fixture.receive.asset || state.selectedReceive.network!==fixture.receive.network)));
-    const base = {fixture,pay:{amount:state.amountDraft ?? fixture.pay.amount,fiat:payIdentity.fiat || fixture.pay.fiat,asset:payIdentity.asset,network:payIdentity.network,balance:sourceBalance,address:payAddress,fullAddress:sourceAddress.full},receive:{amount:changedAsset?'—':fixture.receive.amount,fiat:changedAsset?'—':fixture.receive.fiat,asset:receiveIdentity.asset,network:receiveIdentity.network,address:recipientAddress,fullAddress:recipient.full},quote:!changedAsset,multiple:fixture.id!=='same-chain',cta:changedAsset?'Checking…':'Review swap',loading:changedAsset,mapping:`UnifiedSwapBloc.quoteReady · fixture.${fixture.id} · TradeRouteCandidate.selected`};
+    const sourceBalanceAmount = numericAmount(sourceBalance);
+    const spendableAmount = payIdentity.asset === 'ETH' ? Math.max(0,sourceBalanceAmount-.009) : sourceBalanceAmount;
+    const spendableDisplay = `${formatTokenAmount(spendableAmount,payIdentity.asset)} ${payIdentity.asset}`;
+    const base = {fixture,pay:{amount:state.amountDraft ?? fixture.pay.amount,fiat:payIdentity.fiat || fixture.pay.fiat,asset:payIdentity.asset,network:payIdentity.network,balance:sourceBalance,address:payAddress,fullAddress:sourceAddress.full},receive:{amount:fixture.receive.amount,fiat:fixture.receive.fiat,asset:receiveIdentity.asset,network:receiveIdentity.network,address:recipientAddress,fullAddress:recipient.full},quote:true,multiple:fixture.id!=='same-chain',cta:'Review swap',loading:false,mapping:`UnifiedSwapBloc.quoteReady · fixture.${fixture.id} · TradeRouteCandidate.selected`};
     const configs = {
-      blank:{pay:{...base.pay,amount:'',fiat:'$0.00'},receive:{...base.receive,amount:'—',fiat:'$0.00'},quote:false,cta:'Enter amount',mapping:'UnifiedSwapBloc.intentIncomplete'},
-      partial:{pay:{...base.pay,amount:'1.00'},receive:{...base.receive,asset:'Select asset',network:'Choose network',amount:'—'},quote:false,cta:'Select asset',mapping:'UnifiedSwapBloc.intentIncomplete'},
+      blank:{pay:{...base.pay,amount:'',fiat:'$0.00'},receive:{...base.receive,amount:'—',fiat:'$0.00'},quote:false,cta:'Enter amount',action:'focus-amount',mapping:'UnifiedSwapBloc.intentIncomplete'},
+      partial:{pay:{...base.pay,amount:'1.00'},receive:{...base.receive,asset:'Select asset',network:'Choose network',amount:'—'},quote:false,cta:'Select asset',action:'open-receive-asset',mapping:'UnifiedSwapBloc.intentIncomplete'},
       focused:{...base,pay:{...base.pay,amount:state.amountDraft ?? '',fiat:state.amountDraft?base.pay.fiat:'$0.00',focused:true},quote:false,cta:'Enter amount',disabled:true,helper:`Balance at this address: ${base.pay.balance}`,mapping:'UnifiedSwapBloc.intentEditing'},
-      malformed:{...base,pay:{...base.pay,amount:'1..0',fiat:'—',error:true},quote:false,cta:'Enter amount',error:'Enter a valid number.',mapping:'UnifiedSwapBloc.validationError.amountMalformed'},
-      zero:{...base,pay:{...base.pay,amount:'0',fiat:'$0.00',error:true},quote:false,cta:'Enter amount',error:'Amount must be greater than 0.',mapping:'UnifiedSwapBloc.validationError.amountZero'},
-      'below-minimum':{...base,pay:{...base.pay,amount:'0.0002',fiat:'$0.64',error:true},quote:false,cta:'Enter amount',error:'Minimum swap: 0.002 ETH',mapping:'UnifiedSwapBloc.validationError.belowMinimum'},
-      insufficient:{...base,pay:{...base.pay,amount:'3.00',fiat:'$9,635.40',error:true},quote:false,cta:'Enter amount',error:'Only 2.472 ETH is spendable at this address.',mapping:'UnifiedSwapBloc.validationError.insufficientSpendable'},
-      max:{...base,pay:{...base.pay,amount:fixture.pay.asset==='ETH'?'2.472':fixture.pay.amount,fiat:fixture.pay.asset==='ETH'?'$7,939.57':fixture.pay.fiat},quote:false,cta:'Checking…',disabled:true,helper:fixture.pay.asset==='ETH'?'Max uses 2.472 ETH. We kept 0.009 ETH for Ethereum fees.':`Max uses ${fixture.pay.display}. Native ${fixture.pay.network} gas remains available separately.`,mapping:'UnifiedSwapBloc.intentValid · gasReserveApplied'},
+      malformed:{...base,pay:{...base.pay,amount:state.amountDraft ?? '1..0',fiat:'—',error:true},quote:false,cta:'Enter amount',action:'focus-amount',error:'Enter a valid number.',mapping:'UnifiedSwapBloc.validationError.amountMalformed'},
+      zero:{...base,pay:{...base.pay,amount:'0',fiat:'$0.00',error:true},quote:false,cta:'Enter amount',action:'focus-amount',error:'Amount must be greater than 0.',mapping:'UnifiedSwapBloc.validationError.amountZero'},
+      'below-minimum':{...base,pay:{...base.pay,amount:state.amountDraft ?? '0.0002',error:true},quote:false,cta:'Enter amount',action:'focus-amount',error:`Minimum swap: ${fixture.pay.asset==='ETH'?'0.002':'1'} ${fixture.pay.asset}`,mapping:'UnifiedSwapBloc.validationError.belowMinimum'},
+      insufficient:{...base,pay:{...base.pay,amount:state.amountDraft ?? '3.00',error:true},quote:false,cta:'Enter amount',action:'focus-amount',error:`Only ${spendableDisplay} is spendable at this address.`,mapping:'UnifiedSwapBloc.validationError.insufficientSpendable'},
+      max:{...base,pay:{...base.pay,amount:fixture.pay.asset==='ETH'?'2.472':fixture.pay.amount,fiat:fixture.pay.asset==='ETH'?'$7,939.57':fixture.pay.fiat},quote:false,cta:'Check options',action:'retry-quote',helper:fixture.pay.asset==='ETH'?'Max uses 2.472 ETH. We kept 0.009 ETH for Ethereum fees.':`Max uses ${fixture.pay.display}. Native ${fixture.pay.network} gas remains available separately.`,mapping:'UnifiedSwapBloc.intentValid · gasReserveApplied'},
       capabilities:{...base,quote:false,cta:'Checking…',disabled:true,loading:true,helper:'Checking what this address supports…',mapping:'UnifiedSwapBloc.capabilitiesLoading'},
       checking:{...base,receive:{...base.receive,amount:'—',fiat:'—'},quote:false,cta:'Checking…',disabled:true,loading:true,helper:'Checking swap options…',mapping:'UnifiedSwapBloc.quoting'},
       'quoted-single':{...base,multiple:false,mapping:'UnifiedSwapBloc.quoteReady · one ranked candidate'},
@@ -1089,13 +1224,15 @@
       inactive:{...base,quote:false,cta:'Activate asset',error:'USDC is not active in Gleec.',invalidField:'receive-asset',mapping:'UnifiedSwapBloc.capabilityBlocked.assetNotActivated'},
       unsupported:{...base,quote:false,cta:'Choose another address',error:'This address can’t sign every step required for this swap.',invalidField:'source-address',mapping:'UnifiedSwapBloc.capabilityBlocked.signerPolicyUnsupported'},
       offline:{...base,quote:false,cta:'Try again',error:'You’re offline. Balances and estimates may be out of date. Reconnect and refresh before reviewing.',mapping:'UnifiedSwapBloc.offline · cachedIntent'},
-      'rate-limited':{...base,quote:false,cta:'Try again in 18s',disabled:true,error:'We’re checking too often. Try again in 18 seconds.',mapping:'UnifiedSwapBloc.rateLimited'},
+      'rate-limited':{...base,quote:false,cta:'Try again',action:'retry-quote',error:'We’re checking too often. Wait a moment, then try again. Your selections are preserved.',mapping:'UnifiedSwapBloc.rateLimited'},
+      'service-error':{...base,receive:{...base.receive,amount:'—',fiat:'—'},quote:false,cta:'Try again',action:'retry-quote',error:'We couldn’t check swap options. Your selections are preserved and nothing was signed or sent.',mapping:'UnifiedSwapBloc.quoteServiceError'},
+      'quote-timeout':{...base,receive:{...base.receive,amount:'—',fiat:'—'},quote:false,cta:'Try again',action:'retry-quote',error:'Checking options took too long. Your selections are preserved and nothing was signed or sent.',mapping:'UnifiedSwapBloc.quoteTimeout'},
       'no-route':{...base,receive:{...base.receive,amount:'—',fiat:'—'},quote:false,cta:'Choose another asset',error:'No swap is available for this amount and pair right now.',mapping:'UnifiedSwapBloc.noRoute'},
       expiring:{...base,mapping:'UnifiedSwapBloc.quoteReady · expiresSoon'},
       expired:{...base,quote:false,cta:'Refresh quote',error:'Quote expired. Nothing has been signed or sent.',mapping:'UnifiedSwapBloc.quoteExpired'},
       'high-price-impact':{...base,warning:'High price impact: you may receive 8.4% less than the current market estimate. Review the minimum carefully.',warningKey:'high-price-impact',mapping:'UnifiedSwapBloc.warning.highPriceImpact'},
       'low-liquidity':{...base,warning:'Low liquidity may make the final outcome more sensitive to price movement.',warningKey:'low-liquidity',mapping:'UnifiedSwapBloc.warning.lowLiquidity'},
-      'suspicious-token':{...base,quote:false,cta:'Choose another asset',disabled:true,warning:'Suspicious token: its name or contract may imitate another asset. Gleec has blocked this swap.',warningKey:'suspicious-token',mapping:'UnifiedSwapBloc.warning.suspiciousToken'},
+      'suspicious-token':{...base,quote:false,cta:'Choose another asset',warning:'Suspicious token: its name or contract may imitate another asset. Gleec has blocked this swap.',warningKey:'suspicious-token',mapping:'UnifiedSwapBloc.warning.suspiciousToken'},
       'unknown-token':{...base,receive:{...base.receive,asset:'XYZ',fiat:'Price unavailable'},quote:false,cta:'Review token identity',warning:'Unknown token: verify the full contract and network before continuing.',warningKey:'unknown-token',mapping:'UnifiedSwapBloc.warning.unknownToken'},
       'price-estimate-unavailable':{...base,pay:{...base.pay,fiat:'Price estimate unavailable'},receive:{...base.receive,fiat:'Price estimate unavailable'},warning:'Price estimate unavailable. Token amounts, minimum received, and costs remain available.',warningKey:'price-estimate-unavailable',mapping:'UnifiedSwapBloc.warning.priceEstimateUnavailable'}
     };
@@ -1109,7 +1246,7 @@
     const receiveConfig = {...config.receive,errorId,invalidTarget:config.invalidField==='recipient'?'address':config.invalidField==='receive-asset'?'asset':null};
     const helper = config.error ? `<div class="wallet-helper error" id="${errorId}" role="alert"><i class="ri-error-warning-line" aria-hidden="true"></i>${escapeHtml(config.error)}</div>` : config.warning ? `<div class="wallet-warning" data-warning="${escapeHtml(config.warningKey)}"><i class="ri-alert-line" aria-hidden="true"></i><div>${escapeHtml(config.warning)}</div></div>` : config.helper ? `<div class="wallet-helper"><i class="ri-information-line" aria-hidden="true"></i>${escapeHtml(config.helper)}</div>` : '';
     const loading = config.loading ? `<div style="display:grid;gap:8px;margin-top:14px"><div class="wallet-skeleton" style="width:68%"></div><div class="wallet-skeleton" style="width:45%"></div></div>` : '';
-    const ctaAction = config.cta === 'Review swap' ? 'review-swap' : config.cta === 'Refresh quote' ? 'refresh-quote' : config.cta === 'Checking…' ? 'checking' : 'resolve-entry';
+    const ctaAction = config.action || (config.cta === 'Review swap' ? 'review-swap' : config.cta === 'Refresh quote' ? 'refresh-quote' : config.cta === 'Checking…' ? 'checking' : 'resolve-entry');
     const body = `<div class="wallet-content" ${config.loading?'aria-busy="true"':''}><h1>Swap</h1><div class="wallet-stack">${amountCard('pay',payConfig)}<button class="wallet-switch" data-action="switch-direction" aria-label="Switch direction"><i class="ri-arrow-up-down-line" aria-hidden="true"></i></button>${amountCard('receive',receiveConfig)}</div>${helper}${loading}${config.quote ? quoteStrip(config.multiple,name,config.fixture) : ''}<button class="wallet-primary" data-action="${ctaAction}" ${config.warningKey?`data-warning-key="${escapeHtml(config.warningKey)}"`:''} ${config.disabled?'disabled':''}>${escapeHtml(config.cta)}</button><div class="wallet-state-tag">${escapeHtml(config.mapping)}</div></div>`;
     return previewCanvas(body,`Swap entry — ${entryStates.find(item=>item[0]===name)?.[1] || name}`,config.mapping,false);
   }
@@ -1215,24 +1352,27 @@
   function optionCard(kind, selected, unrankable, warningText, index = 1, fixture = journeyFixtures['cross-chain']) {
     const optionKey = kind === 'single' ? 'best' : kind;
     const option = fixture.options?.[optionKey] || journeyFixtures['cross-chain'].options[optionKey] || journeyFixtures['cross-chain'].options.other;
-    const expected = option.expected;
-    const minimum = option.minimum;
+    const evaluatedFixture = quoteFixtureForCurrentIntent(fixture,option);
+    const expected = evaluatedFixture.receive.display;
+    const minimum = evaluatedFixture.receive.minimum;
     const badge = kind==='best'&&!unrankable&&kind!=='single' ? '<span class="wallet-badge brand">Best net return</span>' : kind==='fastest'&&!unrankable ? '<span class="wallet-badge info">Fastest</span>' : unrankable ? '<span class="wallet-badge warning">Unable to compare</span>' : '';
     const warning = warningText ? `<span class="wallet-helper warning" data-warning="route-warning"><i class="ri-alert-line"></i>${escapeHtml(warningText)}</span>` : '';
     const warningCode = warningText?.toLowerCase().includes('liquidity') ? 'low-liquidity' : warningText ? 'route-warning' : '';
-    return `<button class="wallet-option ${selected?'selected':''}" role="radio" aria-checked="${selected}" tabindex="${selected||index===1?'0':'-1'}" data-action="select-option" data-option="${escapeHtml(optionKey)}" data-unrankable="${unrankable}" ${warningCode?`data-warning-code="${warningCode}"`:''}><span><span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>${index>3?`Candidate ${index} · `:''}${escapeHtml(expected)} expected</b>${badge}</span><span class="wallet-option-metrics"><span>Minimum<b>${escapeHtml(minimum)}</b></span><span>Total cost<b>${unrankable?'Incomplete':`$${option.totalCost.toFixed(2)}`}</b></span><span>ETA<b>${escapeHtml(option.eta)}</b></span><span>Stages<b>${option.stages}</b></span><span>Permission<b>${escapeHtml(option.permission)}</b></span></span>${warning}</span><i class="${selected?'ri-radio-button-line':'ri-checkbox-blank-circle-line'}" aria-hidden="true"></i></button>`;
+    return `<button class="wallet-option ${selected?'selected':''}" role="radio" aria-checked="${selected}" tabindex="${selected||index===1?'0':'-1'}" data-action="select-option" data-option="${escapeHtml(optionKey)}" data-unrankable="${unrankable}" ${warningCode?`data-warning-code="${warningCode}"`:''}><span><span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>${index>3?`Candidate ${index} · `:''}${escapeHtml(expected)} expected</b>${badge}</span><span class="wallet-option-metrics"><span>Minimum<b>${escapeHtml(minimum)}</b></span><span>Total cost<b>${unrankable?'Incomplete':`$${evaluatedFixture.fees.totalCost.toFixed(2)}`}</b></span><span>ETA<b>${escapeHtml(evaluatedFixture.eta)}</b></span><span>Stages<b>${option.stages}</b></span><span>Permission<b>${escapeHtml(option.permission)}</b></span></span>${warning}</span><i class="${selected?'ri-radio-button-line':'ri-checkbox-blank-circle-line'}" aria-hidden="true"></i></button>`;
   }
 
   function renderOptionsSheet(name) {
     if (name === 'material') return renderDialogSheet('material-update');
     if (name === 'structural') return `<aside class="wallet-sheet"><div class="wallet-status-hero"><div class="wallet-status-icon warning"><i class="ri-route-line"></i></div><h3>Swap steps changed</h3><p>The networks or step sequence changed. We’re checking fresh options before you continue.</p><button class="wallet-primary" data-action="refresh-quote">Check fresh options</button><button class="wallet-primary secondary" data-action="navigate-swap">Edit swap</button></div><div class="wallet-state-tag">UnifiedSwapBloc.structuralQuoteChange · fresh evaluation required</div></aside>`;
-    const fixture = journeyFixtures[state.activeJourney] || journeyFixtures['cross-chain'];
+    const canonicalFixture = journeyFixtures[state.activeJourney] || journeyFixtures['cross-chain'];
+    const selectedOption = canonicalFixture.options?.[state.selectedOption] || canonicalFixture.options?.best;
+    const fixture = quoteFixtureForCurrentIntent(canonicalFixture,selectedOption);
     const allUnrankable = name === 'all-unrankable';
     const rankedUnrankable = name === 'mixed-rank';
     const stress = name === 'stress-128';
     const selected = allUnrankable ? (state.selectedOptionUnrankable ? state.selectedOption : null) : name === 'alternative' ? state.selectedOption || 'fastest' : state.selectedOption || 'best';
     const body = name === 'expired' || name === 'unavailable' ? `<div class="gus-callout warning"><i class="ri-timer-line"></i><span>${name==='expired'?'This option expired.':'This option is no longer available.'}</span></div>` : name === 'quiet-refresh' ? `<div class="gus-callout"><i class="ri-refresh-line"></i><span>Updated just now. Changes stayed within your approved limits.</span></div>` : '';
-    let stressOptions = stress ? `${optionCard('best',selected==='best',false,'Low liquidity — minimum received already reflects this risk.',1,fixture)}${optionCard('fastest',selected==='fastest',false,'',2,fixture)}${optionCard('other',selected==='other',false,'',3,fixture)}${optionCard('other',false,false,'',4,fixture)}${state.showRemainingOptions?Array.from({length:124},(_,offset)=>optionCard('other',false,false,'',offset+5,fixture)).join(''):''}<button class="wallet-primary secondary" data-action="show-remaining-options" ${state.showRemainingOptions?'disabled':''}>${state.showRemainingOptions?'All 128 options shown':'Show remaining 124'}</button>` : `${optionCard(name==='single'?'single':'best',name==='single'||selected==='best',allUnrankable,rankedUnrankable?'The middle exchange is checked now but isn’t reserved. Gleec checks it again before it starts.':'',1,fixture)}${name!=='single'?optionCard('fastest',selected==='fastest',allUnrankable,'',2,fixture):''}${rankedUnrankable?`<h3 style="margin-top:10px">Unable to compare</h3>${optionCard('other',selected==='other',true,'',3,fixture)}`:''}`;
+    let stressOptions = stress ? `${optionCard('best',selected==='best',false,'Low liquidity — minimum received already reflects this risk.',1,canonicalFixture)}${optionCard('fastest',selected==='fastest',false,'',2,canonicalFixture)}${optionCard('other',selected==='other',false,'',3,canonicalFixture)}${optionCard('other',false,false,'',4,canonicalFixture)}${state.showRemainingOptions?Array.from({length:124},(_,offset)=>optionCard('other',false,false,'',offset+5,canonicalFixture)).join(''):''}<button class="wallet-primary secondary" data-action="show-remaining-options" ${state.showRemainingOptions?'disabled':''}>${state.showRemainingOptions?'All 128 options shown':'Show remaining 124'}</button>` : `${optionCard(name==='single'?'single':'best',name==='single'||selected==='best',allUnrankable,rankedUnrankable?'The middle exchange is checked now but isn’t reserved. Gleec checks it again before it starts.':'',1,canonicalFixture)}${name!=='single'?optionCard('fastest',selected==='fastest',allUnrankable,'',2,canonicalFixture):''}${rankedUnrankable?`<h3 style="margin-top:10px">Unable to compare</h3>${optionCard('other',selected==='other',true,'',3,canonicalFixture)}`:''}`;
     if (['expired','unavailable'].includes(name)) stressOptions = stressOptions.replaceAll('data-action="select-option"','aria-disabled="true" disabled');
     const actionButton = name==='expired' ? `<button class="wallet-primary" data-action="refresh-quote">Refresh quote</button>` : name==='unavailable' ? `<button class="wallet-primary" data-action="show-available-options">Compare available options</button>` : `<button class="wallet-primary" data-action="use-option" ${allUnrankable&&!selected?'disabled':''}>${allUnrankable&&!selected?'Select an option':'Use this option'}</button>`;
     const rankingCopy = allUnrankable ? 'These options are not ranked. Choose one after reviewing its available details.' : 'Best net return among currently available, comparable options.';
@@ -1353,41 +1493,54 @@
   function reviewConfig(name) {
     const mixedFixtureStates = ['exact-approval','allowance-reset','sufficient-allowance','mixed-pre','mixed-post','mixed-both'];
     const persistedConsent = name === 'material-update' ? state.executionConsent : null;
-    const fixtureId = persistedConsent?.fixtureId || (name === 'same-chain-native' ? 'same-chain' : mixedFixtureStates.includes(name) ? 'mixed' : name === 'fresh-recovery' ? 'different-token' : name === 'material-update' && journeyFixtures[state.activeJourney] ? state.activeJourney : 'cross-chain');
-    const fixture = journeyFixtures[fixtureId];
-    const option = fixture.options[state.selectedOption] || fixture.options.best;
-    const materialRefresh = materialRefreshByFixture[fixtureId] || materialRefreshByFixture['cross-chain'];
-    const optionFiatNumber = Number(String(fixture.receive.fiat).replace(/[^0-9.]/g,'')) * (Number(String(option.expected).replaceAll(',','').match(/[0-9.]+/)?.[0] || 0) / Number(String(fixture.receive.amount).replaceAll(',','').match(/[0-9.]+/)?.[0] || 1));
+    const transientReviewStates = ['material-update','revalidating','revalidation-failed'];
+    const fixtureId = persistedConsent?.fixtureId || (name === 'same-chain-native' ? 'same-chain' : mixedFixtureStates.includes(name) ? 'mixed' : name === 'fresh-recovery' ? 'different-token' : transientReviewStates.includes(name) && journeyFixtures[state.activeJourney] ? state.activeJourney : 'cross-chain');
+    const canonicalFixture = journeyFixtures[fixtureId];
+    const option = canonicalFixture.options[state.selectedOption] || canonicalFixture.options.best;
+    const fixture = quoteFixtureForCurrentIntent(canonicalFixture,option);
+    const materialBase = materialRefreshByFixture[fixtureId] || materialRefreshByFixture['cross-chain'];
+    const materialRatio = numericAmount(persistedConsent?.payAmount || fixture.pay.display) / (numericAmount(canonicalFixture.pay.amount) || 1);
+    const materialSwapCost = materialBase.swapCost * materialRatio;
+    const materialRefresh = {
+      expected:`${formatTokenAmount(numericAmount(materialBase.expected)*materialRatio,fixture.receive.asset)} ${fixture.receive.asset}`,
+      minimum:`${formatTokenAmount(numericAmount(materialBase.minimum)*materialRatio,fixture.receive.asset)} ${fixture.receive.asset}`,
+      networkCost:materialBase.networkCost,
+      swapCost:materialSwapCost,
+      totalCost:materialBase.networkCost+materialSwapCost,
+      maximumNetworkCost:materialBase.maximumNetworkCost
+    };
     const base = {
-      payAmount:fixture.pay.display, expected:option.expected, minimum:option.minimum, sourceAsset:fixture.pay.asset, sourceNetwork:fixture.pay.network,
+      payAmount:fixture.pay.display, expected:fixture.receive.display, minimum:fixture.receive.minimum, sourceAsset:fixture.pay.asset, sourceNetwork:fixture.pay.network,
       destinationAsset:fixture.receive.asset, destinationNetwork:fixture.receive.network, from:(state.selectedSourceAddress?`${state.selectedSourceAddress.label?`${state.selectedSourceAddress.label} · `:''}${state.selectedSourceAddress.short}`:fixture.pay.address), to:(state.selectedRecipient?`${state.selectedRecipient.external?'External · ':''}${state.selectedRecipient.short}`:fixture.receive.address),
       fromFull:state.selectedSourceAddress?.full || fixture.pay.fullAddress,toFull:state.selectedRecipient?.full || fixture.receive.fullAddress,
-      networkCost:`$${option.networkCost.toFixed(2)}`, swapCost:`$${option.swapCost.toFixed(2)}`, approvalNetworkCost:`$${fixture.fees.approvalNetworkCost.toFixed(2)}`, totalCost:`$${option.totalCost.toFixed(2)}`, maxNetworkCost:`$${option.maximumNetworkCost.toFixed(2)}`, eta:option.eta, slippage:'0.5%',
+      networkCost:`$${fixture.fees.networkCost.toFixed(2)}`, swapCost:`$${fixture.fees.swapCost.toFixed(2)}`, approvalNetworkCost:`$${fixture.fees.approvalNetworkCost.toFixed(2)}`, totalCost:`$${fixture.fees.totalCost.toFixed(2)}`, maxNetworkCost:`$${fixture.fees.maximumNetworkCost.toFixed(2)}`, eta:fixture.eta, slippage:'0.5%',
       fixtureId, initialProgress:'planned', timelineKind:fixtureId === 'same-chain' ? 'same-chain' : fixtureId === 'mixed' ? 'mixed-both' : fixtureId === 'different-token' ? 'different-token' : 'cross-chain',
-      sourceFiat:fixture.pay.fiat, destinationFiat:Number.isFinite(optionFiatNumber)?`$${optionFiatNumber.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`:fixture.receive.fiat, sourceBalance:fixture.pay.balance
+      sourceFiat:fixture.pay.fiat, destinationFiat:fixture.receive.fiat, sourceBalance:fixture.pay.balance
     };
     const configs = {
       'direct-atomic':{payAmount:'1 ETH',expected:'0.02732 BTC',minimum:'0.02718 BTC',destinationAsset:'BTC',destinationNetwork:'Bitcoin',destinationFiat:'Price estimate unavailable',to:'bc1q7n…p9t4',toFull:'bc1q7n3qtx0vm8qth4zqg0q4e2jq39h3qrrp9t4',networkCost:'$4.20',swapCost:'$6.18',totalCost:'$10.38',maxNetworkCost:'$9.80',eta:'About 8 minutes',summary:'Exchange ETH for BTC.',steps:'Prepare → Send ETH → Exchange → Receive BTC',permission:'No token permission required',cta:'Start swap',timelineKind:'direct',mapping:'UnifiedSwapBloc.reviewReady · routeFamily.atomic'},
       'same-chain-native':{summary:'Send and convert on Ethereum.',steps:'Prepare → Send on Ethereum → Convert → Receive',permission:'No token permission required',cta:'Start swap',mapping:'UnifiedSwapBloc.reviewReady · routeFamily.sameChain'},
       'cross-chain-native':{summary:'Send on Ethereum, move to Arbitrum One, then convert.',steps:'Ethereum → Arbitrum One → USDC',permission:'No token permission required',cta:'Start swap',mapping:'UnifiedSwapBloc.reviewReady · routeFamily.externalCrossChain'},
-      'exact-approval':{summary:'Approve exactly 1,250 USDC for this swap. This does not grant unlimited access.',steps:'Approve exact amount → Convert → Exchange → Receive BTC',permission:'Exact approval: 1,250 USDC',cta:'Approve exactly 1,250 USDC & start',initialProgress:'awaiting-approval',mapping:'UnifiedSwapBloc.reviewReady · approval.exact'},
-      'allowance-reset':{networkCost:'$10.28',swapCost:'$9.04',approvalNetworkCost:'$2.32',totalCost:'$19.32',maxNetworkCost:'$24.80',summary:'Reset the current permission, approve the exact amount, then start the swap.',steps:'Reset to zero → Exact approval → Convert → Exchange → Receive BTC',permission:'Reset to zero, then exact approval: 1,250 USDC',cta:'Continue with reset',initialProgress:'resetting',mapping:'UnifiedSwapBloc.reviewReady · approval.resetThenExact'},
+      'exact-approval':{summary:`Approve exactly ${fixture.pay.display} for this swap. This does not grant unlimited access.`,steps:'Approve exact amount → Convert → Exchange → Receive BTC',permission:`Exact approval: ${fixture.pay.display}`,cta:`Approve exactly ${fixture.pay.display} & start`,initialProgress:'awaiting-approval',mapping:'UnifiedSwapBloc.reviewReady · approval.exact'},
+      'allowance-reset':{networkCost:'$10.28',swapCost:'$9.04',approvalNetworkCost:'$2.32',totalCost:'$19.32',maxNetworkCost:'$24.80',summary:'Reset the current permission, approve the exact amount, then start the swap.',steps:'Reset to zero → Exact approval → Convert → Exchange → Receive BTC',permission:`Reset to zero, then exact approval: ${fixture.pay.display}`,cta:'Continue with reset',initialProgress:'resetting',mapping:'UnifiedSwapBloc.reviewReady · approval.resetThenExact'},
       'sufficient-allowance':{networkCost:'$7.96',swapCost:'$9.04',approvalNetworkCost:'$0.00',totalCost:'$17.00',maxNetworkCost:'$20.80',summary:'Your current token permission covers this amount. No new approval is needed.',steps:'Convert → Exchange → Receive BTC',permission:'Existing permission is sufficient',cta:'Start swap',initialProgress:'planned',mapping:'UnifiedSwapBloc.reviewReady · approval.sufficient'},
-      'mixed-pre':{summary:'Convert the asset, then exchange and receive BTC.',steps:'Approve → Convert → Exchange → Receive BTC',permission:'Exact approval: 1,250 USDC',cta:'Approve exactly 1,250 USDC & start',initialProgress:'awaiting-approval',timelineKind:'mixed-pre',mixed:true,mapping:'UnifiedSwapBloc.reviewReady · routeFamily.mixedPre'},
+      'mixed-pre':{summary:'Convert the asset, then exchange and receive BTC.',steps:'Approve → Convert → Exchange → Receive BTC',permission:`Exact approval: ${fixture.pay.display}`,cta:`Approve exactly ${fixture.pay.display} & start`,initialProgress:'awaiting-approval',timelineKind:'mixed-pre',mixed:true,mapping:'UnifiedSwapBloc.reviewReady · routeFamily.mixedPre'},
       'mixed-post':{payAmount:'1 ETH',sourceAsset:'ETH',sourceNetwork:'Ethereum',sourceFiat:'$3,211.80',sourceBalance:'2.481 ETH',from:journeyFixtures['cross-chain'].pay.address,fromFull:journeyFixtures['cross-chain'].pay.fullAddress,expected:'3,204.18 USDC',minimum:'3,188.16 USDC',destinationAsset:'USDC',destinationNetwork:'Arbitrum One',destinationFiat:'$3,204.18',to:journeyFixtures['cross-chain'].receive.address,toFull:journeyFixtures['cross-chain'].receive.fullAddress,networkCost:'$6.90',swapCost:'$7.42',totalCost:'$14.32',maxNetworkCost:'$16.80',eta:'About 11 minutes',summary:'Exchange, then convert the verified intermediate holding to USDC.',steps:'Exchange → Verify WBTC holding → Convert → Receive',permission:'No permission required now',cta:'Start swap',initialProgress:'planned',timelineKind:'mixed-post',mixed:true,mapping:'UnifiedSwapBloc.reviewReady · routeFamily.mixedPost'},
-      'mixed-both':{summary:'Convert, exchange, verify the holding, then receive BTC.',steps:'Convert → Exchange → Verify 0.01816 WBTC → Convert → Receive BTC',permission:'Exact approval: 1,250 USDC',cta:'Approve exactly 1,250 USDC & start',initialProgress:'awaiting-approval',mixed:true,mapping:'UnifiedSwapBloc.reviewReady · routeFamily.mixedBoth'},
+      'mixed-both':{summary:'Convert, exchange, verify the holding, then receive BTC.',steps:'Convert → Exchange → Verify 0.01816 WBTC → Convert → Receive BTC',permission:`Exact approval: ${fixture.pay.display}`,cta:`Approve exactly ${fixture.pay.display} & start`,initialProgress:'awaiting-approval',mixed:true,mapping:'UnifiedSwapBloc.reviewReady · routeFamily.mixedBoth'},
       'external-recipient':{to:'External · 0x3C44…93BC',toFull:'0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',summary:'Send the final USDC to a validated external address.',steps:'Ethereum → Arbitrum One → USDC',permission:'No token permission required',cta:'Start swap',external:true,mapping:'UnifiedSwapBloc.reviewReady · recipient.external'},
-      'fresh-recovery':{summary:'Convert the verified USDT holding to USDC on Arbitrum One using a fresh quote and fresh consent.',steps:'Exact approval → Convert → Receive USDC',permission:'Exact approval: 1,318.42 USDT',cta:'Approve exactly 1,318.42 USDT & start',initialProgress:'awaiting-approval',mapping:'UnifiedSwapBloc.reviewReady · recovery.freshConsent'},
+      'fresh-recovery':{summary:'Convert the verified USDT holding to USDC on Arbitrum One using a fresh quote and fresh consent.',steps:'Exact approval → Convert → Receive USDC',permission:`Exact approval: ${fixture.pay.display}`,cta:`Approve exactly ${fixture.pay.display} & start`,initialProgress:'awaiting-approval',mapping:'UnifiedSwapBloc.reviewReady · recovery.freshConsent'},
+      revalidating:{badge:'Checking latest quote',badgeClass:'info',summary:'Confirming the latest outcome and costs before you continue.',steps:'No step has started',permission:'No permission requested',cta:'Checking…',revalidating:true,mapping:'UnifiedSwapBloc.reviewRevalidating'},
+      'revalidation-failed':{badge:'Couldn’t refresh quote',badgeClass:'warning',summary:'The latest outcome could not be confirmed. Your selections are preserved and nothing was signed or sent.',steps:'Fresh evaluation required',permission:'No permission requested',cta:'Try again',revalidationFailed:true,mapping:'UnifiedSwapBloc.reviewRevalidationFailed'},
       expired:{badge:'Quote expired',badgeClass:'warning',summary:'This quote expired. Nothing has been signed or sent.',steps:'Fresh evaluation required',permission:'No permission requested',cta:'Refresh quote',expired:true,mapping:'UnifiedSwapBloc.quoteExpired'},
       'material-update':{expected:materialRefresh.expected,minimum:materialRefresh.minimum,networkCost:`$${materialRefresh.networkCost.toFixed(2)}`,swapCost:`$${materialRefresh.swapCost.toFixed(2)}`,totalCost:`$${materialRefresh.totalCost.toFixed(2)}`,maxNetworkCost:`$${materialRefresh.maximumNetworkCost.toFixed(2)}`,summary:'Review the updated outcome and costs before continuing.',steps:'Step sequence unchanged',permission:persistedConsent?.permission || 'Previous permission not used',cta:'Accept updated quote',initialProgress:persistedConsent?'converting':'planned',material:true,previousExpected:persistedConsent?.expected || option.expected,previousMinimum:persistedConsent?.minimum || option.minimum,previousTotalCost:persistedConsent?.totalCost || `$${option.totalCost.toFixed(2)}`,previousMaxNetworkCost:persistedConsent?.maxNetworkCost || `$${option.maximumNetworkCost.toFixed(2)}`,mapping:'UnifiedSwapBloc.materialQuoteChange'},
       'reduced-assurance':{badge:'Option blocked',badgeClass:'warning',summary:'Gleec can’t verify every required cost and protection for this option.',steps:'Option blocked',permission:'No permission requested',cta:'Can’t continue',blocked:true,mapping:'UnifiedSwapBloc.capabilityBlocked.reducedAssurance'}
     };
     const result = {...base,...(configs[name] || configs['cross-chain-native'])};
     if (name === 'material-update') {
-      const refreshedAmount = Number(String(result.expected).replaceAll(',','').match(/[0-9.]+/)?.[0] || 0);
-      const canonicalAmount = Number(String(fixture.receive.amount).replaceAll(',','').match(/[0-9.]+/)?.[0] || 1);
-      const canonicalFiat = Number(String(fixture.receive.fiat).replace(/[^0-9.]/g,'') || 0);
-      result.destinationFiat = canonicalFiat ? `$${(canonicalFiat*refreshedAmount/canonicalAmount).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}` : 'Price estimate unavailable';
+      const refreshedAmount = numericAmount(result.expected);
+      const previousAmount = numericAmount(fixture.receive.display) || 1;
+      const previousFiat = numericAmount(fixture.receive.fiat);
+      result.destinationFiat = previousFiat ? formatFiatAmount(previousFiat*refreshedAmount/previousAmount) : 'Price estimate unavailable';
     }
     if (persistedConsent) {
       Object.assign(result,{
@@ -1405,27 +1558,49 @@
     return result;
   }
 
+  function reviewPermissionCopy(config) {
+    const permission = String(config.permission || '');
+    if (/no token permission|no permission required|no permission requested|permission:\s*none/i.test(permission)) {
+      return ['No token approval needed','You’ll only sign the swap request when you start.'];
+    }
+    if (/existing permission|sufficient/i.test(permission)) {
+      return ['No new token approval needed','Your existing approval covers this swap; no broader permission will be requested.'];
+    }
+    if (/reset/i.test(permission)) {
+      const exactAmount = permission.split(/exact approval:\s*/i)[1] || config.payAmount;
+      return ['Reset, then exact approval',`Reset the current permission, then approve ${exactAmount} for this swap only — never unlimited.`];
+    }
+    const exactAmount = permission.replace(/^Exact approval:\s*/i,'') || config.payAmount;
+    return ['Exact approval only',`Approve ${exactAmount} for this swap only — never unlimited.`];
+  }
+
   function renderReviewPreview(name) {
     const config = reviewConfig(name);
-    const external = config.external ? `<div class="wallet-warning"><i class="ri-map-pin-warning-line"></i><div><b>External recipient</b><p style="margin-top:5px">${escapeHtml(config.toFull)}</p></div></div>` : '';
-    const mixed = config.mixed ? `<div class="wallet-warning"><i class="ri-alert-line"></i><div><b>This swap completes in several steps</b><p style="margin-top:5px">Completed steps can’t be reversed. The middle exchange is checked now but isn’t reserved. Gleec checks it again before it starts. If a later step stops, Gleec will show the last confirmed location and any verified holding.</p></div></div>` : '';
+    const external = config.external ? `<div class="wallet-warning"><i class="ri-map-pin-warning-line"></i><div><b>External recipient</b><p style="margin-top:5px">Check ${escapeHtml(config.toFull)} carefully. Completed transfers can’t be reversed.</p></div></div>` : '';
+    const mixed = config.mixed ? `<div class="wallet-warning"><i class="ri-alert-line"></i><div><b>This swap completes in several steps</b><p style="margin-top:5px">Completed steps can’t be reversed. If a later step stops, Gleec shows the last confirmed location and any verified holding.</p></div></div>` : '';
     const material = config.material ? `<div class="wallet-warning"><i class="ri-refresh-line"></i><div><b>Outcome updated</b><p style="margin-top:5px">Minimum changed from ${escapeHtml(config.previousMinimum)} to ${escapeHtml(config.minimum)}. Total cost changed from ${escapeHtml(config.previousTotalCost)} to ${escapeHtml(config.totalCost)}.</p></div></div>` : '';
+    const expiry = config.expired ? `<div class="wallet-warning"><i class="ri-timer-line"></i><div><b>Quote expired</b><p style="margin-top:5px">Refresh before starting. Nothing has been signed or sent.</p></div></div>` : '';
+    const revalidation = config.revalidating ? `<div class="wallet-helper" role="status"><i class="ri-loader-4-line"></i>Checking the latest outcome and costs. The start action is unavailable until this finishes.</div>` : config.revalidationFailed ? `<div class="wallet-warning"><i class="ri-error-warning-line"></i><div><b>Latest quote not confirmed</b><p style="margin-top:5px">Try again before starting. Your selections are preserved.</p></div></div>` : '';
     const warningCopy = {
       'high-price-impact':['High price impact','You may receive substantially less than the current market estimate. Review the minimum carefully.'],
       'low-liquidity':['Low liquidity','The selected option may be more sensitive to price movement. The minimum received already reflects this risk.'],
-      'route-warning':['Route warning','Review this option’s warning before you start.']
-      ,'price-estimate-unavailable':['Price estimate unavailable','Token amounts, minimum received, and costs are available, but a fiat market estimate is not.']
+      'route-warning':['Route warning','Review this option’s warning before you start.'],
+      'price-estimate-unavailable':['Price estimate unavailable','Token amounts, minimum received, and costs are available, but a fiat market estimate is not.']
     };
     const persistedWarnings = state.activeWarnings.map(code=>warningCopy[code] || warningCopy['route-warning']).map(([title,copy])=>`<div class="wallet-warning"><i class="ri-alert-line"></i><div><b>${escapeHtml(title)}</b><p style="margin-top:5px">${escapeHtml(copy)}</p></div></div>`).join('');
-    const badge = config.badge || `Minimum ${config.minimum}`;
+    const badge = config.badge || 'Ready to review';
     const sourceIdentity = assetCatalog.find(row=>row.asset===config.sourceAsset&&row.network===config.sourceNetwork)?.fullIdentity || `${config.sourceAsset} · ${config.sourceNetwork}`;
     const destinationIdentity = assetCatalog.find(row=>row.asset===config.destinationAsset&&row.network===config.destinationNetwork)?.fullIdentity || `${config.destinationAsset} · ${config.destinationNetwork}`;
-    const identities = `<details class="wallet-details"><summary>Full addresses and asset identities</summary><div><div class="wallet-copy-line"><code>${escapeHtml(config.fromFull)}</code><button class="wallet-link" data-action="copy-source-address" data-copy-value="${escapeHtml(config.fromFull)}">Copy source</button></div><div class="wallet-copy-line"><code>${escapeHtml(config.toFull)}</code><button class="wallet-link" data-action="copy-recipient" data-copy-value="${escapeHtml(config.toFull)}">Copy recipient</button></div><div class="wallet-copy-line"><code>${escapeHtml(sourceIdentity)}</code><button class="wallet-link" data-action="copy-asset-identity" data-copy-value="${escapeHtml(sourceIdentity)}">Copy source identity</button></div><div class="wallet-copy-line"><code>${escapeHtml(destinationIdentity)}</code><button class="wallet-link" data-action="copy-asset-identity" data-copy-value="${escapeHtml(destinationIdentity)}">Copy destination identity</button></div></div></details>`;
-    const secondary = `<details class="wallet-details"><summary>Fees and completion details</summary><div><div class="wallet-detail-row"><span>Network costs</span><b>${escapeHtml(config.networkCost)}</b></div>${config.approvalNetworkCost!=='$0.00'?`<div class="wallet-detail-row"><span>↳ Approval network cost</span><b>${escapeHtml(config.approvalNetworkCost)}</b></div>`:''}<div class="wallet-detail-row"><span>Swap costs</span><b>${escapeHtml(config.swapCost)}</b></div><div class="wallet-detail-row"><span>Estimated time</span><b>${escapeHtml(config.eta)}</b></div><div class="wallet-detail-row"><span>How it completes</span><b>${escapeHtml(config.steps)}</b></div><div class="wallet-detail-row"><span>Protection</span><b>Pause if approved limits are exceeded</b></div></div></details>`;
-    const body = `<div class="wallet-content"><div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><button class="wallet-close" data-action="review-back" aria-label="Back"><i class="ri-arrow-left-line"></i></button><h1 tabindex="-1" style="margin:0">Review swap</h1></div><div class="wallet-status-hero" style="text-align:left;padding-inline:0"><span class="wallet-badge ${config.badgeClass || 'brand'}">${escapeHtml(badge)}</span><h2 style="margin-top:12px">${escapeHtml(config.payAmount)} → ${escapeHtml(config.expected)}</h2><p>${escapeHtml(config.summary)}</p></div>${reviewSection('Outcome',[['Expected receive',config.expected],['Minimum receive',config.minimum],['Slippage',config.slippage]])}${reviewSection('From and destination',[['From',config.from],['Source',`${config.sourceAsset} on ${config.sourceNetwork}`],['To',config.external?config.to:config.to],['Destination',`${config.destinationAsset} on ${config.destinationNetwork}`]])}${reviewSection('Costs and protection',[['Total cost',config.totalCost],['Maximum network cost',config.maxNetworkCost]])}${identities}${secondary}${reviewSection('Permission required',[['Scope',config.permission]])}${external}${mixed}${persistedWarnings}${material}<button class="wallet-primary" data-action="start-swap" ${config.blocked?'disabled':''}>${escapeHtml(config.cta)}</button>${config.blocked?'<button class="wallet-primary secondary" data-action="open-options">Choose another option</button>':''}<div class="wallet-state-tag">${escapeHtml(config.mapping)} · RouteConsent</div></div>`;
-    const consentBody = config.expired ? body.replace('data-action="start-swap"','data-action="refresh-quote"') : body;
+    const costs = `<details class="wallet-details"><summary>Costs &amp; protection</summary><div><div class="wallet-detail-row"><span>Network costs</span><b>${escapeHtml(config.networkCost)}</b></div>${config.approvalNetworkCost!=='$0.00'?`<div class="wallet-detail-row"><span>Approval network cost</span><b>${escapeHtml(config.approvalNetworkCost)}</b></div>`:''}<div class="wallet-detail-row"><span>Swap costs</span><b>${escapeHtml(config.swapCost)}</b></div><div class="wallet-detail-row"><span>Slippage</span><b>${escapeHtml(config.slippage)}</b></div><div class="wallet-detail-row"><span>Maximum-cost guard</span><b>Pause before signing if the approved limit is exceeded</b></div></div></details>`;
+    const routeAndIdentities = `<details class="wallet-details"><summary>Route &amp; identities</summary><div><div class="wallet-detail-row"><span>How it completes</span><b>${escapeHtml(config.steps)}</b></div><div class="wallet-copy-line"><code>${escapeHtml(config.fromFull)}</code><button class="wallet-link" data-action="copy-source-address" data-copy-value="${escapeHtml(config.fromFull)}">Copy source</button></div><div class="wallet-copy-line"><code>${escapeHtml(config.toFull)}</code><button class="wallet-link" data-action="copy-recipient" data-copy-value="${escapeHtml(config.toFull)}">Copy recipient</button></div><div class="wallet-copy-line"><code>${escapeHtml(sourceIdentity)}</code><button class="wallet-link" data-action="copy-asset-identity" data-copy-value="${escapeHtml(sourceIdentity)}">Copy source identity</button></div><div class="wallet-copy-line"><code>${escapeHtml(destinationIdentity)}</code><button class="wallet-link" data-action="copy-asset-identity" data-copy-value="${escapeHtml(destinationIdentity)}">Copy destination identity</button></div></div></details>`;
+    const [permissionTitle,permissionDescription] = reviewPermissionCopy(config);
+    const permission = `<div class="wallet-permission review-permission-shield" data-review-permission><i class="ri-shield-check-line"></i><div><b>${escapeHtml(permissionTitle)}</b><p>${escapeHtml(permissionDescription)}</p></div></div>`;
+    const ctaAction = config.expired || config.revalidationFailed ? 'revalidate-review' : config.revalidating ? 'checking' : 'start-swap';
+    const ctaDisabled = config.blocked || config.revalidating;
+    const footer = `<div class="wallet-review-footer"><button class="wallet-primary" data-action="${ctaAction}" ${ctaDisabled?'disabled':''}>${escapeHtml(config.cta)}</button>${config.blocked?'<button class="wallet-primary secondary" data-action="open-options">Choose another option</button>':''}</div>`;
+    const body = `<div class="wallet-content" ${config.revalidating?'aria-busy="true"':''}><div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><button class="wallet-close" data-action="review-back" aria-label="Back"><i class="ri-arrow-left-line"></i></button><h1 tabindex="-1" style="margin:0">Review swap</h1></div><span class="wallet-badge ${config.badgeClass || 'brand'}">${escapeHtml(badge)}</span><section class="wallet-review-summary" data-review-summary aria-label="Transfer summary" style="margin-top:12px"><div class="wallet-review-leg">${tokenIcon(config.sourceAsset,config.sourceNetwork)}<div class="wallet-review-leg-copy"><span>You pay</span><strong>${escapeHtml(config.payAmount)}</strong><small>${escapeHtml(config.sourceNetwork)} · ${escapeHtml(config.from)}</small></div></div><div class="wallet-review-route" aria-label="Swap route"><i class="ri-arrow-down-line"></i></div><div class="wallet-review-leg">${tokenIcon(config.destinationAsset,config.destinationNetwork)}<div class="wallet-review-leg-copy"><span>You receive</span><strong>${escapeHtml(config.expected)}</strong><small>${escapeHtml(config.destinationNetwork)} · ${escapeHtml(config.to)}</small></div></div></section><div class="wallet-protection"><i class="ri-shield-check-line"></i><div><span>You’ll receive at least</span><b>${escapeHtml(config.minimum)}</b></div></div><div class="wallet-decision-grid" aria-label="Key swap facts"><div class="wallet-decision-fact"><span>Total cost</span><b>${escapeHtml(config.totalCost)}</b></div><div class="wallet-decision-fact"><span>Estimated completion</span><b>${escapeHtml(config.eta)}</b></div><div class="wallet-decision-fact"><span>Maximum network cost</span><b>${escapeHtml(config.maxNetworkCost)}</b></div></div>${costs}${routeAndIdentities}${external}${mixed}${persistedWarnings}${material}${expiry}${revalidation}${permission}${footer}<div class="wallet-state-tag">${escapeHtml(config.mapping)} · RouteConsent</div></div>`;
     const desktop = state.viewport === '1024' || state.viewport === '1440';
-    const reviewSurface = desktop ? `${reviewBaseSwapContent(config)}<aside class="wallet-sheet wallet-side-panel" role="region" aria-label="Review swap panel">${consentBody}</aside>` : consentBody;
+    const reviewSurface = desktop ? `${reviewBaseSwapContent(config)}<aside class="wallet-sheet wallet-side-panel" role="region" aria-label="Review swap panel">${body}</aside>` : body;
     return previewCanvas(reviewSurface,`Review — ${reviewStates.find(item=>item[0]===name)?.[1] || name}`,config.mapping,desktop);
   }
 
@@ -1816,7 +1991,11 @@
       ['Targets','48dp minimum · 8dp separation','All controls','Passed'],
       ['Status','Icon + text · not color alone','All outcomes','Passed']
     ];
-    return `${sectionHeader('08','Responsive & Accessibility','One information order across widths, with geometry adapting from full-screen mobile sheets to desktop side panels.')}<div class="gus-card"><h3>Breakpoint behavior</h3><div class="responsive-strip">${widths.map(([width,copy])=>`<button class="responsive-card" data-set-viewport="${width}"><b>${width}px</b><small>${copy}</small></button>`).join('')}</div></div><div class="gus-grid" style="margin-top:16px"><div class="gus-card"><h3>Try the acceptance variants</h3><div class="component-row"><button class="gus-btn" data-set-scale="2"><i class="ri-font-size-2"></i>200% text</button><button class="gus-btn" data-set-motion="reduced"><i class="ri-pause-circle-line"></i>Reduced motion</button><button class="gus-btn" data-set-theme="light"><i class="ri-sun-line"></i>Light</button><button class="gus-btn" data-set-theme="dark"><i class="ri-moon-line"></i>Dark</button></div><div style="margin-top:16px">${renderEntryPreview('quoted-multiple')}</div></div><div class="gus-card"><h3>Accessibility rules</h3><ul class="gus-rule-list"><li><i class="ri-focus-3-line"></i><span>Visible keyboard focus and logical semantics order</span></li><li><i class="ri-contrast-2-line"></i><span>4.5:1 body contrast in both themes</span></li><li><i class="ri-hand-line"></i><span>48dp touch targets and safe-area CTAs</span></li><li><i class="ri-volume-up-line"></i><span>Status and action announcements</span></li><li><i class="ri-text-spacing"></i><span>200% text without hidden recipient or horizontal overflow</span></li><li><i class="ri-movie-2-line"></i><span>Reduced-motion state equivalence</span></li></ul></div></div><div class="gus-card" style="margin-top:16px"><h3>Acceptance matrix</h3><div style="overflow-x:auto"><table class="check-matrix"><thead><tr><th>Area</th><th>Coverage</th><th>Variant</th><th>Result</th></tr></thead><tbody>${checks.map(row=>`<tr>${row.map((cell,index)=>`<td>${index===3?'<span class="gus-badge success">'+cell+'</span>':cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+    const check = active => active ? '<i class="ri-check-line gus-choice-check" aria-hidden="true"></i>' : '';
+    const choice = (setting,value,label,icon,active) => `<button type="button" class="gus-btn gus-choice-button" data-preview-setting="${setting}" data-preview-value="${value}" data-a11y-control="${setting}-${value}" data-focus-key="a11y-${setting}-${value}" aria-pressed="${active}"><i class="${icon}" aria-hidden="true"></i><span>${label}</span>${check(active)}</button>`;
+    const viewportChoices = widths.map(([width,copy])=>`<button type="button" class="responsive-card" data-preview-setting="viewport" data-preview-value="${width}" data-set-viewport="${width}" data-a11y-control="viewport-${width}" data-focus-key="a11y-viewport-${width}" aria-pressed="${state.viewport===width}">${check(state.viewport===width)}<b>${width}px</b><small>${copy}</small></button>`).join('');
+    const controls = `<div class="gus-choice-groups"><div class="gus-choice-group"><span id="text-scale-label">Text scale</span><div class="gus-choice-options" role="group" aria-labelledby="text-scale-label">${choice('text-scale','100','100%','ri-font-size-2',state.scale===1)}${choice('text-scale','200','200%','ri-font-size-2',state.scale===2)}</div></div><div class="gus-choice-group"><span id="motion-label">Motion</span><div class="gus-choice-options" role="group" aria-labelledby="motion-label">${choice('motion','standard','Standard','ri-play-circle-line',state.motion==='full')}${choice('motion','reduced','Reduced','ri-pause-circle-line',state.motion==='reduced')}</div></div><div class="gus-choice-group"><span id="theme-label">Theme</span><div class="gus-choice-options" role="group" aria-labelledby="theme-label">${choice('theme','light','Light','ri-sun-line',state.theme==='light')}${choice('theme','dark','Dark','ri-moon-line',state.theme==='dark')}</div></div><button type="button" class="gus-btn" data-a11y-action="reset" data-focus-key="a11y-reset"><i class="ri-restart-line" aria-hidden="true"></i>Reset tests</button></div>`;
+    return `${sectionHeader('08','Responsive & Accessibility','One information order across widths, with geometry adapting from full-screen mobile sheets to desktop side panels.')}<div class="gus-card"><h3>Breakpoint behavior</h3><div class="responsive-strip" role="group" aria-label="Preview viewport">${viewportChoices}</div></div><div class="gus-grid" style="margin-top:16px"><div class="gus-card"><h3>Try the acceptance variants</h3>${controls}<div style="margin-top:16px">${renderEntryPreview('quoted-multiple')}</div></div><div class="gus-card"><h3>Accessibility rules</h3><ul class="gus-rule-list"><li><i class="ri-focus-3-line"></i><span>Visible keyboard focus and logical semantics order</span></li><li><i class="ri-contrast-2-line"></i><span>4.5:1 body contrast in both themes</span></li><li><i class="ri-hand-line"></i><span>48dp touch targets and safe-area CTAs</span></li><li><i class="ri-volume-up-line"></i><span>Status and action announcements</span></li><li><i class="ri-text-spacing"></i><span>200% text without hidden recipient or horizontal overflow</span></li><li><i class="ri-movie-2-line"></i><span>Reduced-motion state equivalence</span></li></ul></div></div><div class="gus-card" style="margin-top:16px"><h3>Acceptance matrix</h3><div style="overflow-x:auto"><table class="check-matrix"><thead><tr><th>Area</th><th>Coverage</th><th>Variant</th><th>Result</th></tr></thead><tbody>${checks.map(row=>`<tr>${row.map((cell,index)=>`<td>${index===3?'<span class="gus-badge success">'+cell+'</span>':cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
   }
 
   const flows = [
@@ -1898,6 +2077,7 @@
 
   function renderSection() {
     const renderers = [renderCover,renderFoundations,renderComponents,renderEntry,renderPickers,renderReview,renderProgressActivity,renderRecovery,renderResponsive,renderHandoff];
+    const focusKey = document.activeElement instanceof HTMLElement ? document.activeElement.dataset.focusKey || null : null;
     main.innerHTML = renderers[state.section]();
     main.querySelectorAll('i').forEach(icon=>icon.setAttribute('aria-hidden','true'));
     const modal = main.querySelector('.wallet-modal[aria-modal="true"]');
@@ -1913,6 +2093,8 @@
     tabs.querySelectorAll('[data-section]').forEach(button=>button.setAttribute('aria-selected',String(Number(button.dataset.section)===state.section)));
     requestAnimationFrame(() => {
       fitPreviewFrames();
+      const focusTarget = focusKey ? [...main.querySelectorAll('[data-focus-key]')].find(element=>element.dataset.focusKey===focusKey) : null;
+      if (focusTarget) { focusTarget.focus({preventScroll:true}); return; }
       const heading = main.querySelector('.wallet-side-panel h1[tabindex="-1"], .wallet-side-panel h2[tabindex="-1"], .wallet-modal h1[tabindex="-1"], .wallet-modal h2[tabindex="-1"], .wallet-content h1[tabindex="-1"]');
       if (heading) heading.focus({preventScroll:true});
     });
@@ -1959,10 +2141,16 @@
     if (flow.id === 'refund' && nextFlowState === 'refunded') state.selectedExecutionId='route_refund_final_6c81';
     if (flow.id === 'manual-revoke' && nextFlowState === 'approval-only') state.selectedExecutionId='route_approval_44c0';
     renderSection();
-    if (flow.id === 'external-recipient' && flow.steps[state.flowStep]?.[2] === 'recipient:validating') {
-      setTimeout(()=>{ if (state.flow===flow.id && flow.steps[state.flowStep]?.[2]==='recipient:validating') { state.flowStep++; renderSection(); announce('Recipient validation completed'); } },450);
-    }
+    syncFlowAsyncState();
     return true;
+  }
+
+  function syncFlowAsyncState() {
+    const flow = flows.find(item=>item.id===state.flow);
+    const validatingRecipient = flow?.id === 'external-recipient' && flow.steps[state.flowStep]?.[2] === 'recipient:validating';
+    if (!validatingRecipient) { cancelRecipientValidation();return; }
+    if (!/^0x[0-9a-fA-F]{40}$/.test(String(state.recipientDraft || '').trim())) state.recipientDraft='0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC';
+    scheduleRecipientValidation(state.recipientDraft,flow.id);
   }
 
   function closeCustomerSurface() {
@@ -1970,7 +2158,7 @@
     const openerAction = restore?.openerAction || state.lastOpenerAction || 'review-swap';
     const openerExecutionId = restore?.openerExecutionId || '';
     if (restore) Object.assign(state,restore);
-    else { state.section = 3; state.entry = 'quoted-multiple'; }
+    else state.section = 3;
     state.customerSurface = null;
     state.surfaceReturn = state.surfaceStack.at(-1) || null;
     renderSection();
@@ -1978,7 +2166,7 @@
   }
 
   function rememberSurface(action, openerElement = null) {
-    const snapshot = {section:state.section,entry:state.entry,pickerFamily:state.pickerFamily,pickerState:state.pickerState,review:state.review,progressMode:state.progressMode,progress:state.progress,activity:state.activity,activityReturnFilter:state.activityReturnFilter,recovery:state.recovery,customerSurface:state.customerSurface,selectedExecutionId:state.selectedExecutionId,activeJourney:state.activeJourney,recoveryFeedback:state.recoveryFeedback,openerAction:action,openerExecutionId:openerElement?.dataset?.executionId || ''};
+    const snapshot = {section:state.section,pickerFamily:state.pickerFamily,pickerState:state.pickerState,progressMode:state.progressMode,progress:state.progress,activity:state.activity,activityReturnFilter:state.activityReturnFilter,recovery:state.recovery,customerSurface:state.customerSurface,selectedExecutionId:state.selectedExecutionId,activeJourney:state.activeJourney,recoveryFeedback:state.recoveryFeedback,openerAction:action,openerExecutionId:openerElement?.dataset?.executionId || ''};
     state.surfaceStack.push(snapshot);
     state.surfaceReturn = snapshot;
     state.lastOpenerAction = action;
@@ -1994,14 +2182,120 @@
     state.surfaceReturn = state.surfaceStack.at(-1) || null;
   }
 
-  function scheduleQuoteResult(result = 'quoted-multiple') {
-    setTimeout(()=>{
-      if (state.flow || state.section !== 3 || state.entry !== 'checking') return;
-      state.intentDirty = false;
-      state.entry = result;
+  function quoteIntentKey() {
+    return JSON.stringify({
+      journey:state.activeJourney,
+      amount:state.amountDraft,
+      pay:state.selectedPay ? [state.selectedPay.asset,state.selectedPay.network] : null,
+      receive:state.selectedReceive ? [state.selectedReceive.asset,state.selectedReceive.network] : null,
+      source:state.selectedSourceAddress?.full || null,
+      recipient:state.selectedRecipient?.full || null,
+      option:state.selectedOption
+    });
+  }
+
+  function entryOutcomeForCurrentIntent() {
+    const fixture = journeyFixtures[state.activeJourney] || journeyFixtures['cross-chain'];
+    const changedAsset = Boolean(
+      (state.selectedPay && (state.selectedPay.asset !== fixture.pay.asset || state.selectedPay.network !== fixture.pay.network)) ||
+      (state.selectedReceive && (state.selectedReceive.asset !== fixture.receive.asset || state.selectedReceive.network !== fixture.receive.network))
+    );
+    const amount = Number(String(state.amountDraft ?? fixture.pay.amount).replaceAll(',',''));
+    if (changedAsset || !Number.isFinite(amount) || amount <= 0) return 'no-route';
+    const minimum = fixture.pay.asset === 'ETH' ? .002 : 1;
+    if (amount < minimum) return 'below-minimum';
+    const sourceBalance = state.selectedSourceAddress?.balances?.[fixture.pay.asset]?.[0] || state.selectedSourceAddress?.balance || fixture.pay.balance;
+    const balance = numericAmount(sourceBalance);
+    const spendable = fixture.pay.asset === 'ETH' ? Math.max(0,balance-.009) : balance;
+    if (amount > spendable) return 'insufficient';
+    return state.activeJourney === 'same-chain' ? 'quoted-single' : 'quoted-multiple';
+  }
+
+  function reviewStateForCurrentIntent() {
+    if (state.selectedRecipient?.external) return 'external-recipient';
+    if (state.activeJourney === 'same-chain') return 'same-chain-native';
+    if (state.activeJourney === 'mixed') return 'mixed-both';
+    if (state.activeJourney === 'different-token') return 'fresh-recovery';
+    return 'cross-chain-native';
+  }
+
+  const quoteEvaluationController = createQuoteEvaluationController({
+    schedule:(callback,delay)=>setTimeout(callback,delay),
+    cancelScheduled:handle=>clearTimeout(handle),
+    onTransition:transition=>{
+      state.quoteRevision = transition.revision;
+      state.quoteIntentKey = transition.intentKey;
+      const target = transition.target || state.quoteTarget;
+      const checking = transition.status === 'checking';
+      const failed = transition.status === 'quote-timeout' || transition.status === 'service-error';
+      if (transition.intentKey !== quoteIntentKey()) {
+        state.quoteIntentKey = null;
+        state.intentDirty = true;
+        state.pendingStartAfterRevalidation = false;
+        if (target === 'review') state.review = 'revalidation-failed';
+        else state.entry = 'expired';
+        const staleTargetIsVisible = (target === 'entry' && state.section === 3) || (target === 'review' && state.section === 5);
+        if (staleTargetIsVisible) { renderSection();announce('The swap changed before this check finished. Refresh to continue'); }
+        return;
+      }
+      if (target === 'review') {
+        state.review = checking ? 'revalidating' : failed ? 'revalidation-failed' : state.reviewReturnState;
+      } else {
+        state.entry = transition.status;
+      }
+      if (!checking) state.intentDirty = false;
+      if (target === 'review' && failed) state.pendingStartAfterRevalidation = false;
+      if (target === 'review' && !checking && !failed && state.pendingStartAfterRevalidation) {
+        state.pendingStartAfterRevalidation = false;
+        commitStartSwap();
+        return;
+      }
+      const targetIsVisible = (target === 'entry' && state.section === 3) || (target === 'review' && state.section === 5);
+      if (!targetIsVisible) return;
       renderSection();
-      announce(result === 'no-route' ? 'No compatible swap is currently available for this selection' : 'Updated swap options are ready');
-    },450);
+      if (checking) announce(target === 'review' ? 'Checking the latest quote before you continue' : 'Checking swap options');
+      else if (target === 'review' && failed) announce('The quote could not be revalidated. Try again before starting');
+      else if (target === 'review') announce('The latest quote is ready to review');
+      else if (transition.status === 'below-minimum') announce('The amount is below the minimum for this swap');
+      else if (transition.status === 'insufficient') announce('The selected address does not have enough spendable balance for this amount');
+      else announce(transition.status === 'no-route' ? 'No compatible swap is currently available for this selection' : transition.status === 'service-error' ? 'Swap options could not be checked' : transition.status === 'quote-timeout' ? 'Checking swap options timed out' : 'Updated swap options are ready');
+    }
+  });
+
+  function cancelQuoteEvaluation() {
+    const activeRequest = quoteEvaluationController.snapshot();
+    quoteEvaluationController.cancel();
+    state.quoteIntentKey = null;
+    state.pendingStartAfterRevalidation = false;
+    if (activeRequest?.status === 'checking') {
+      if (activeRequest.target === 'review' && state.review === 'revalidating') state.review = 'revalidation-failed';
+      if (activeRequest.target !== 'review' && ['checking','capabilities'].includes(state.entry)) state.entry = 'expired';
+    }
+  }
+
+  function beginQuoteEvaluation(result = entryOutcomeForCurrentIntent(), options = {}) {
+    state.quoteTarget = options.target || 'entry';
+    state.intentDirty = true;
+    if (state.quoteTarget === 'entry' && options.preserveOption !== true) {
+      state.selectedOption = 'best';
+      state.selectedOptionUnrankable = false;
+      state.activeWarnings = [];
+    }
+    if (state.quoteTarget === 'review') state.reviewReturnState = options.reviewReturnState || reviewStateForCurrentIntent();
+    quoteEvaluationController.begin({
+      intentKey:quoteIntentKey(),
+      outcome:state.quoteTarget === 'review' ? 'review-ready' : result,
+      target:state.quoteTarget,
+      delay:options.delay === undefined ? 450 : options.delay
+    });
+  }
+
+  function beginReviewRevalidation() {
+    const transientStates = ['revalidating','revalidation-failed','expired'];
+    const returnState = transientStates.includes(state.review) ? state.reviewReturnState : state.review;
+    state.section = 5;
+    state.pendingStartAfterRevalidation = false;
+    beginQuoteEvaluation('review-ready',{target:'review',reviewReturnState:returnState || reviewStateForCurrentIntent()});
   }
 
   function recipientValidation(value) {
@@ -2009,6 +2303,35 @@
     if (/^(bc1|T[A-Za-z0-9]{20,})/i.test(trimmed)) return 'wrong-network';
     if (!/^0x[0-9a-fA-F]{40}$/.test(trimmed)) return 'invalid-syntax';
     return 'validating';
+  }
+
+  let recipientValidationRevision = 0;
+  let recipientValidationHandle = null;
+
+  function cancelRecipientValidation() {
+    recipientValidationRevision += 1;
+    if (recipientValidationHandle !== null) clearTimeout(recipientValidationHandle);
+    recipientValidationHandle = null;
+  }
+
+  function scheduleRecipientValidation(value, flowId = null) {
+    cancelRecipientValidation();
+    const revision = recipientValidationRevision;
+    const normalizedValue = String(value || '').trim();
+    recipientValidationHandle = setTimeout(()=>{
+      if (revision !== recipientValidationRevision || String(state.recipientDraft || '').trim() !== normalizedValue) return;
+      recipientValidationHandle = null;
+      if (flowId) {
+        const flow = flows.find(item=>item.id===flowId);
+        if (state.flow!==flowId || flow?.steps[state.flowStep]?.[2]!=='recipient:validating') return;
+        state.flowStep += 1;
+      } else {
+        if (state.pickerFamily!=='recipient' || state.pickerState!=='validating') return;
+        state.pickerState = 'valid';
+      }
+      const targetIsVisible = flowId ? state.section===9 : state.section===4;
+      if (targetIsVisible) { renderSection();announce('Recipient validation completed'); }
+    },450);
   }
 
   function hydrateFreshIntentFromHolding() {
@@ -2044,6 +2367,29 @@
     return holding;
   }
 
+  function commitStartSwap() {
+    const consent = reviewConfig(state.review);
+    state.executionConsent = {
+      executionId:`route_live_${String(consent.fixtureId).replaceAll('-','_')}_${state.selectedOption || 'selected'}`,
+      fixtureId:consent.fixtureId, reviewState:state.review, payAmount:consent.payAmount,
+      expected:consent.expected, minimum:consent.minimum, sourceAsset:consent.sourceAsset,
+      sourceNetwork:consent.sourceNetwork, destinationAsset:consent.destinationAsset,
+      destinationNetwork:consent.destinationNetwork, from:consent.from, fromFull:consent.fromFull,
+      to:consent.to, toFull:consent.toFull, permission:consent.permission,
+      initialProgress:consent.initialProgress, timelineKind:consent.timelineKind,totalCost:consent.totalCost,
+      maxNetworkCost:consent.maxNetworkCost,sourceFiat:consent.sourceFiat,destinationFiat:consent.destinationFiat,
+      sourceBalance:consent.sourceBalance
+    };
+    state.activeJourney = consent.fixtureId;
+    cancelQuoteEvaluation();
+    clearSurfaceHistory();
+    state.section=6;
+    state.progressMode='progress';
+    state.progress=consent.initialProgress;
+    renderSection();
+    announce('Latest quote confirmed. The swap is ready for the next required action');
+  }
+
   function handleCustomerAction(action, element) {
     if (!action) return false;
     if (['copy-address','copy-source-address'].includes(action)) { copyValue(element.dataset.copyValue || state.selectedSourceAddress?.full || journeyFixtures[state.activeJourney]?.pay.fullAddress || journeyFixtures['cross-chain'].pay.fullAddress,'Source address'); return true; }
@@ -2051,37 +2397,42 @@
     if (action === 'copy-holding') { copyValue(element.dataset.copyValue || 'Holding details unavailable','Holding details'); return true; }
     if (action === 'copy-contract' || action === 'copy-asset-identity') { copyValue(element.dataset.copyValue || '0xaf88d065e77c8cC2239327C5EDb3A432268e5831','Asset identity'); return true; }
     if (action === 'copy-evidence') { copyValue(element.dataset.copyValue || '0x9ba4f1e2d0027384512d0','Evidence'); return true; }
+    if (state.pendingStartAfterRevalidation && ['review-back','navigate-swap','navigate-activity'].includes(action)) cancelQuoteEvaluation();
 
     if (state.flow) {
       if (action === 'paste-recipient') { state.recipientDraft='0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC'; renderSection(); return true; }
       if (action === 'validate-recipient') {
         state.recipientDraft = main.querySelector('#gus-recipient-input')?.value || state.recipientDraft;
         const validation = recipientValidation(state.recipientDraft);
-        if (validation !== 'validating') { state.recipientValidationState=validation; renderSection(); announce('Recipient validation failed'); return true; }
+        if (validation !== 'validating') { cancelRecipientValidation();state.recipientValidationState=validation; renderSection(); announce('Recipient validation failed'); return true; }
       }
       if (action === 'select-option') { state.selectedOption=element.dataset.option; state.selectedOptionUnrankable=element.dataset.unrankable==='true'; state.activeWarnings=element.dataset.warningCode?[element.dataset.warningCode]:state.selectedOptionUnrankable?['route-warning']:[]; }
       if (action === 'confirm-recipient') { state.selectedRecipient={short:'0x3C44…93BC',full:state.recipientDraft || '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',external:true}; }
       if (action === 'open-activity-item') { const item=findActivityItem(element.dataset.executionId); if(item){state.selectedExecutionId=item.executionId||item.id;state.activeJourney=item.journey||'cross-chain';state.executionConsent=item.consent?{...item.consent}:null;state.recovery=item.recovery||state.recovery;state.recoveryFeedback='';} }
       if (action === 'finish-swap') hydrateFreshIntentFromHolding();
       if (advanceCustomerFlow(action,element)) return true;
+      state.flow = null;
+      state.flowStep = 0;
+      cancelQuoteEvaluation();
     }
 
     const opensSurface = new Set(['open-asset-picker','open-pay-asset','open-receive-asset','open-address-picker','open-recipient','open-options','request-cancel','request-stop','leave-progress','view-evidence','contact-support']);
     if (opensSurface.has(action)) {
       rememberSurface(action,element);
     }
-    if (action === 'navigate-swap') { clearSurfaceHistory(); state.section=3; state.entry=state.amountDraft?'quoted-multiple':'blank'; renderSection(); return true; }
+    if (action === 'navigate-swap') { clearSurfaceHistory(); state.section=3; if (!state.amountDraft) state.entry='blank'; renderSection(); return true; }
     if (action === 'navigate-activity') { if(state.section===6&&state.progressMode==='progress') persistExecutionToActivity(); clearSurfaceHistory(); state.section=6; state.progressMode='activity'; state.activity='active'; renderSection(); return true; }
     if (action === 'navigate-advanced') { announce('Advanced Trade is a separate destination and is outside this swap prototype.'); return true; }
     if (action === 'more-options') { announce('More wallet options are outside this swap prototype.'); return true; }
-    if (action === 'open-asset-picker' || action === 'open-pay-asset' || action === 'open-receive-asset') { state.section=4; state.pickerFamily='asset'; state.pickerState='my-assets'; state.customerSurface=element.dataset.pickerKind || 'asset'; renderSection(); return true; }
+    if (action === 'focus-amount') { const input=main.querySelector('.wallet-amount-input');if(input){input.focus({preventScroll:true});input.select();} return true; }
+    if (action === 'open-asset-picker' || action === 'open-pay-asset' || action === 'open-receive-asset') { state.section=4; state.pickerFamily='asset'; state.pickerState='my-assets'; state.customerSurface=action==='open-pay-asset'?'pay':action==='open-receive-asset'?'receive':element.dataset.pickerKind || 'asset'; renderSection(); return true; }
     if (action === 'open-address-picker') { state.section=4; state.pickerFamily='address'; state.pickerState='list'; state.customerSurface='address'; renderSection(); return true; }
-    if (action === 'open-recipient') { state.section=4; state.pickerFamily='recipient'; state.pickerState='initial'; state.customerSurface='recipient'; state.recipientDraft=state.selectedRecipient?.external?state.selectedRecipient.full:''; renderSection(); return true; }
+    if (action === 'open-recipient') { cancelRecipientValidation();state.section=4; state.pickerFamily='recipient'; state.pickerState='initial'; state.customerSurface='recipient'; state.recipientDraft=state.selectedRecipient?.external?state.selectedRecipient.full:''; renderSection(); return true; }
     if (action === 'open-options') { state.section=4; state.pickerFamily='options'; state.pickerState='multiple'; state.customerSurface='options'; renderSection(); return true; }
-    if (action === 'close-panel' && state.pickerFamily==='recipient' && state.pickerState==='confirmed') { clearSurfaceHistory(); state.section=3; state.entry='checking'; renderSection(); scheduleQuoteResult('quoted-multiple'); return true; }
+    if (action === 'close-panel' && state.pickerFamily==='recipient' && state.pickerState==='confirmed') { clearSurfaceHistory(); state.section=3; beginQuoteEvaluation(); return true; }
     if (action === 'close-panel' || action === 'review-back' || action === 'timeline-back' || action === 'recovery-back' || action === 'activity-back') { closeCustomerSurface(); return true; }
-    if (action === 'apply-max') { const fixture=journeyFixtures[state.activeJourney]||journeyFixtures['cross-chain'];state.amountDraft=fixture.pay.asset==='ETH'?'2.472':fixture.pay.amount; state.section=3; state.entry='max'; renderSection(); announce('Maximum amount applied with gas reserved'); setTimeout(()=>{if(state.section===3&&state.entry==='max'){state.entry='checking';renderSection();const sameAmount=Number(String(state.amountDraft).replaceAll(',',''))===Number(String(fixture.pay.amount).replaceAll(',',''));scheduleQuoteResult(sameAmount?(state.activeJourney==='same-chain'?'quoted-single':'quoted-multiple'):'no-route');}},450); return true; }
-    if (action === 'switch-direction') { const fixture=journeyFixtures[state.activeJourney]||journeyFixtures['cross-chain']; state.selectedPay={asset:fixture.receive.asset,network:fixture.receive.network,balance:'0 '+fixture.receive.asset,fiat:'$0.00'}; state.selectedReceive={asset:fixture.pay.asset,network:fixture.pay.network}; state.intentDirty=true; state.section=3; state.entry='checking'; renderSection(); announce('Pay and receive assets switched; previous quote invalidated'); scheduleQuoteResult('no-route'); return true; }
+    if (action === 'apply-max') { const fixture=journeyFixtures[state.activeJourney]||journeyFixtures['cross-chain'];const balance=state.selectedSourceAddress?.balances?.[fixture.pay.asset]?.[0]||state.selectedSourceAddress?.balance||fixture.pay.balance;const available=numericAmount(balance);state.amountDraft=fixture.pay.asset==='ETH'?Math.max(0,available-.009).toFixed(3):String(available||fixture.pay.amount); state.section=3; announce('Maximum amount applied with gas reserved'); beginQuoteEvaluation(); return true; }
+    if (action === 'switch-direction') { const fixture=journeyFixtures[state.activeJourney]||journeyFixtures['cross-chain']; state.selectedPay={asset:fixture.receive.asset,network:fixture.receive.network,balance:'0 '+fixture.receive.asset,fiat:'$0.00'}; state.selectedReceive={asset:fixture.pay.asset,network:fixture.pay.network}; state.section=3; announce('Pay and receive assets switched; previous quote invalidated'); beginQuoteEvaluation('no-route'); return true; }
     if (action === 'select-asset') {
       const [asset,network] = String(element.dataset.value || '').split('|');
       const selected = assetCatalog.find(row=>row.asset===asset&&row.network===network);
@@ -2089,17 +2440,17 @@
       const current = state.customerSurface==='receive'?(state.selectedReceive||fixture.receive):(state.selectedPay||fixture.pay);
       if (!selected || (current.asset===selected.asset&&current.network===selected.network)) { closeCustomerSurface(); return true; }
       if (state.customerSurface==='receive') state.selectedReceive=selected; else state.selectedPay=selected;
-      state.selectedOption='best'; state.selectedOptionUnrankable=false; state.activeWarnings=[]; state.intentDirty=true; clearSurfaceHistory(); state.section=3; state.entry='checking'; renderSection(); announce('Asset selection updated; previous quote invalidated'); scheduleQuoteResult('no-route'); return true;
+      state.selectedOption='best'; state.selectedOptionUnrankable=false; state.activeWarnings=[]; clearSurfaceHistory(); state.section=3; announce('Asset selection updated; previous quote invalidated'); beginQuoteEvaluation('no-route'); return true;
     }
     if (action === 'select-address') {
       const selected = addressCatalog.find(row=>row.full===element.dataset.value);
       if (selected) state.selectedSourceAddress=selected;
-      clearSurfaceHistory(); state.section=3; state.entry='checking'; renderSection(); announce('Source address updated; checking a fresh quote'); scheduleQuoteResult('quoted-multiple'); return true;
+      clearSurfaceHistory(); state.section=3; announce('Source address updated; checking a fresh quote'); beginQuoteEvaluation(); return true;
     }
     if (action === 'select-recipient-address') {
       const selected = addressCatalog.find(row=>row.full===element.dataset.value);
       if (selected) state.selectedRecipient={short:selected.short,full:selected.full,external:false};
-      clearSurfaceHistory(); state.section=3; state.entry='checking'; renderSection(); announce('Receiving address updated; checking a fresh quote'); scheduleQuoteResult('quoted-multiple'); return true;
+      clearSurfaceHistory(); state.section=3; announce('Receiving address updated; checking a fresh quote'); beginQuoteEvaluation(); return true;
     }
     if (action === 'filter-assets') { state.pickerState=element.dataset.value; renderSection(); return true; }
     if (action === 'clear-search') { state.assetQuery=''; state.pickerState='my-assets'; renderSection(); return true; }
@@ -2111,8 +2462,8 @@
       state.recipientDraft = main.querySelector('#gus-recipient-input')?.value || state.recipientDraft;
       const validation = recipientValidation(state.recipientDraft);
       state.pickerState=validation; renderSection();
-      if (validation==='validating') setTimeout(()=>{ if (state.section===4 && state.pickerFamily==='recipient' && state.pickerState==='validating') { state.pickerState='valid'; renderSection(); announce('Valid Arbitrum One address'); } },450);
-      else announce('Recipient validation failed');
+      if (validation==='validating') scheduleRecipientValidation(state.recipientDraft);
+      else { cancelRecipientValidation();announce('Recipient validation failed'); }
       return true;
     }
     if (action === 'review-recipient') { state.pickerState='warning'; renderSection(); return true; }
@@ -2122,24 +2473,16 @@
     if (action === 'select-option') { state.selectedOption=element.dataset.option; state.selectedOptionUnrankable=element.dataset.unrankable==='true'; state.activeWarnings=element.dataset.warningCode?[element.dataset.warningCode]:state.selectedOptionUnrankable?['route-warning']:[]; if(state.pickerState!=='all-unrankable') state.pickerState='alternative'; renderSection(); announce('Swap option selected'); return true; }
     if (action === 'show-remaining-options') { state.showRemainingOptions=true; renderSection(); announce('All 128 retained options are now shown'); return true; }
     if (action === 'show-available-options') { state.pickerState='multiple'; state.selectedOption='best'; state.selectedOptionUnrankable=false; renderSection(); return true; }
-    if (action === 'use-option') { const selectedCard=main.querySelector('.wallet-option[aria-checked="true"]');state.activeWarnings=selectedCard?.dataset.warningCode?[selectedCard.dataset.warningCode]:state.activeWarnings;clearSurfaceHistory(); state.section=3; state.entry=state.activeJourney==='same-chain'?'quoted-single':'quoted-multiple'; renderSection(); announce('Selected option applied'); return true; }
-    if (action === 'review-swap') { if(element.dataset.warningKey) state.activeWarnings=[element.dataset.warningKey]; rememberSurface('review-swap'); state.section=5; state.review=state.selectedRecipient?.external?'external-recipient':state.activeJourney==='same-chain'?'same-chain-native':state.activeJourney==='mixed'?'mixed-both':state.activeJourney==='different-token'?'fresh-recovery':'cross-chain-native'; renderSection(); return true; }
+    if (action === 'use-option') { const selectedCard=main.querySelector('.wallet-option[aria-checked="true"]');state.activeWarnings=selectedCard?.dataset.warningCode?[selectedCard.dataset.warningCode]:state.activeWarnings;cancelQuoteEvaluation();clearSurfaceHistory(); state.section=3; state.entry=state.activeJourney==='same-chain'?'quoted-single':'quoted-multiple'; renderSection(); announce('Selected option applied'); return true; }
+    if (action === 'review-swap') { if(element.dataset.warningKey) state.activeWarnings=[element.dataset.warningKey]; rememberSurface('review-swap'); state.section=5; const activeQuote=quoteEvaluationController.snapshot();if(activeQuote?.status==='checking'&&activeQuote.target==='review') state.review='revalidating';else {state.review=reviewStateForCurrentIntent();state.reviewReturnState=state.review;} renderSection(); return true; }
     if (action === 'start-swap') {
       const consent = reviewConfig(state.review);
-      if (consent.expired || consent.blocked) { announce(consent.expired?'Refresh the quote before starting':'This option cannot start'); return true; }
-      state.executionConsent = {
-        executionId:`route_live_${String(consent.fixtureId).replaceAll('-','_')}_${state.selectedOption || 'selected'}`,
-        fixtureId:consent.fixtureId, reviewState:state.review, payAmount:consent.payAmount,
-        expected:consent.expected, minimum:consent.minimum, sourceAsset:consent.sourceAsset,
-        sourceNetwork:consent.sourceNetwork, destinationAsset:consent.destinationAsset,
-        destinationNetwork:consent.destinationNetwork, from:consent.from, fromFull:consent.fromFull,
-        to:consent.to, toFull:consent.toFull, permission:consent.permission,
-        initialProgress:consent.initialProgress, timelineKind:consent.timelineKind,totalCost:consent.totalCost,
-        maxNetworkCost:consent.maxNetworkCost,sourceFiat:consent.sourceFiat,destinationFiat:consent.destinationFiat,
-        sourceBalance:consent.sourceBalance
-      };
-      state.activeJourney = consent.fixtureId;
-      clearSurfaceHistory(); state.section=6; state.progressMode='progress'; state.progress=consent.initialProgress; renderSection(); return true;
+      const activeQuote = quoteEvaluationController.snapshot();
+      if (activeQuote?.status==='checking' || consent.expired || consent.blocked || consent.revalidating || consent.revalidationFailed) { announce(activeQuote?.status==='checking' || consent.expired || consent.revalidating || consent.revalidationFailed?'Refresh the quote before starting':'This option cannot start'); return true; }
+      state.reviewReturnState = state.review;
+      state.pendingStartAfterRevalidation = true;
+      beginQuoteEvaluation('review-ready',{target:'review',reviewReturnState:state.review});
+      return true;
     }
     if (action === 'progress-primary') {
       const progressState=element.dataset.progressState;
@@ -2150,20 +2493,22 @@
       const next={'awaiting-approval':'approving','awaiting-signature':'signed','wallet-rejection':'awaiting-signature'}[progressState]; if(next){state.progress=next;renderSection();} return true;
     }
     if (action === 'resolve-entry') {
-      if (state.entry==='offline') { state.entry='checking';renderSection();scheduleQuoteResult(state.activeJourney==='same-chain'?'quoted-single':'quoted-multiple');return true; }
+      if (state.entry==='offline') { beginQuoteEvaluation();return true; }
       if (['partial','no-route','suspicious-token','unknown-token'].includes(state.entry)) { rememberSurface('resolve-entry'); state.section=4;state.pickerFamily='asset';state.pickerState='my-assets';state.customerSurface='receive';renderSection();return true; }
       if (state.entry==='invalid-recipient') { rememberSurface('resolve-entry');state.section=4;state.pickerFamily='recipient';state.pickerState='initial';renderSection();return true; }
       if (state.entry==='unsupported') { rememberSurface('resolve-entry');state.section=4;state.pickerFamily='address';state.pickerState='list';renderSection();return true; }
       if (state.entry==='inactive') { rememberSurface('resolve-entry');state.section=4;state.pickerFamily='asset';state.pickerState='inactive';renderSection();return true; }
       state.entry='focused';renderSection();requestAnimationFrame(()=>main.querySelector('.wallet-amount-input')?.focus());return true;
     }
-    if (action === 'refresh-quote') { clearSurfaceHistory();state.section=3;state.entry='checking';renderSection();scheduleQuoteResult(state.selectedPay||state.selectedReceive?'no-route':state.activeJourney==='same-chain'?'quoted-single':'quoted-multiple');return true; }
+    if (action === 'retry-quote') { clearSurfaceHistory();state.section=3;beginQuoteEvaluation();return true; }
+    if (action === 'refresh-quote') { clearSurfaceHistory();state.section=3;beginQuoteEvaluation();return true; }
+    if (action === 'revalidate-review') { beginReviewRevalidation(); return true; }
     if (action === 'checking') return true;
     if (action === 'request-cancel') { state.section=4; state.pickerFamily='dialog'; state.pickerState='cancel'; renderSection(); return true; }
     if (action === 'request-stop') { state.section=4; state.pickerFamily='dialog'; state.pickerState='stop'; renderSection(); return true; }
     if (action === 'leave-progress') { state.section=4; state.pickerFamily='dialog'; state.pickerState='continues'; renderSection(); return true; }
     if (action === 'close-modal' || action === 'modal-secondary') { closeCustomerSurface(); return true; }
-    if (action === 'modal-primary') { const dialog=state.pickerState; if (dialog==='cancel') { discardTopSurface(); state.section=6; state.progressMode='progress'; state.progress='cancelled'; } else if (dialog==='stop') { discardTopSurface(); state.section=6; state.progressMode='progress'; state.progress='stop-requested'; } else if (dialog==='material-update') { discardTopSurface(); state.section=5; state.review='material-update'; } else if (dialog==='expired') { clearSurfaceHistory();state.section=3;state.entry='checking';renderSection();scheduleQuoteResult(state.activeJourney==='same-chain'?'quoted-single':'quoted-multiple');return true; } else if (dialog==='external') { state.selectedRecipient={short:'0x3C44…93BC',full:'0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',external:true};closeCustomerSurface();return true; } else { closeCustomerSurface(); return true; } renderSection(); return true; }
+    if (action === 'modal-primary') { const dialog=state.pickerState; if (dialog==='cancel') { discardTopSurface(); state.section=6; state.progressMode='progress'; state.progress='cancelled'; } else if (dialog==='stop') { discardTopSurface(); state.section=6; state.progressMode='progress'; state.progress='stop-requested'; } else if (dialog==='material-update' || dialog==='material') { discardTopSurface(); state.section=5; state.review='material-update'; } else if (dialog==='expired') { clearSurfaceHistory();state.section=3;beginQuoteEvaluation();return true; } else if (dialog==='external') { state.selectedRecipient={short:'0x3C44…93BC',full:'0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',external:true};closeCustomerSurface();return true; } else { closeCustomerSurface(); return true; } renderSection(); return true; }
     if (action === 'filter-activity') { state.activity=element.dataset.filter; state.activityFilter=element.dataset.filter; state.activityReturnFilter=element.dataset.filter; renderSection(); return true; }
     if (action === 'retry-activity') { state.activity='active'; renderSection(); announce('Activity loaded'); return true; }
     if (action === 'open-activity-item') {
@@ -2178,13 +2523,13 @@
     }
     if (action === 'resume-swap') { const item=findActivityItem(state.selectedExecutionId); if(item?.consent) state.executionConsent={...item.consent}; state.activeJourney=item?.journey||state.activeJourney; state.section=6; state.progressMode='progress'; state.progress=item?.timelineState||'bridge-pending'; renderSection(); return true; }
     if (action === 'timeline-continue') { state.section=6;state.progressMode='progress';state.progress=state.activeJourney==='mixed'?'action-required':'bridge-pending';renderSection();return true; }
-    if (action === 'finish-swap') { const holding=hydrateFreshIntentFromHolding();clearSurfaceHistory(); state.section=3; state.entry='checking'; renderSection(); announce('Checking a fresh quote from the verified holding'); scheduleQuoteResult(holding&&state.activeJourney==='different-token'?'quoted-multiple':'no-route'); return true; }
+    if (action === 'finish-swap') { const holding=hydrateFreshIntentFromHolding();clearSurfaceHistory(); state.section=3; announce('Checking a fresh quote from the verified holding'); beginQuoteEvaluation(holding&&state.activeJourney==='different-token'?'quoted-multiple':'no-route'); return true; }
     if (action === 'keep-token') { const holding=persistKeptToken();state.activityReturnFilter='completed';state.section=6;state.progressMode='activity';state.activity='completed';renderSection();announce(holding?'Token kept; Activity updated':'No verified holding was changed');return true; }
     if (action === 'refresh-status') { state.recoveryFeedback='Status refreshed just now. No new verified evidence is available yet.';renderSection();announce('Status refreshed; verified evidence is unchanged'); return true; }
     if (action === 'view-evidence') { state.section=4; state.pickerFamily='dialog'; state.pickerState='evidence'; renderSection(); return true; }
     if (action === 'contact-support') { state.supportSubmitted=false; state.section=4; state.pickerFamily='dialog'; state.pickerState='support'; renderSection(); return true; }
     if (action === 'contact-support-submit') { state.supportSubmitted=true; renderSection(); announce('Support handoff prepared with sanitized evidence'); return true; }
-    if (action === 'new-swap') { clearSurfaceHistory();state.selectedPay=null;state.selectedReceive=null;state.selectedSourceAddress=null;state.selectedRecipient=null;state.amountDraft=null;state.selectedOption='best';state.selectedOptionUnrankable=false;state.activeWarnings=[];state.section=3; state.entry='blank'; renderSection(); return true; }
+    if (action === 'new-swap') { cancelQuoteEvaluation();clearSurfaceHistory();state.selectedPay=null;state.selectedReceive=null;state.selectedSourceAddress=null;state.selectedRecipient=null;state.amountDraft=null;state.selectedOption='best';state.selectedOptionUnrankable=false;state.activeWarnings=[];state.section=3; state.entry='blank'; renderSection(); return true; }
     if (action === 'recovery-action') { closeCustomerSurface(); return true; }
     return false;
   }
@@ -2202,7 +2547,83 @@
     motionSelect.value = state.motion;
   }
 
+  const inspectorTransitions = new Map();
+
+  function cancelInspectorTransition(domain = null) {
+    if (domain === null) {
+      inspectorTransitions.forEach(record=>clearTimeout(record.handle));
+      inspectorTransitions.clear();
+      return;
+    }
+    const record = inspectorTransitions.get(domain);
+    if (record) clearTimeout(record.handle);
+    inspectorTransitions.delete(domain);
+  }
+
+  function scheduleInspectorTransition(domain, callback, delay = 650) {
+    cancelInspectorTransition(domain);
+    const token = {};
+    const handle = setTimeout(()=>{
+      if (inspectorTransitions.get(domain)?.token !== token) return;
+      inspectorTransitions.delete(domain);
+      callback();
+    },delay);
+    inspectorTransitions.set(domain,{handle,token});
+  }
+
+  function resetEntryFixtureContext(value) {
+    state.activeJourney = value === 'quoted-single' ? 'same-chain' : 'cross-chain';
+    state.selectedPay = null;
+    state.selectedReceive = null;
+    state.selectedSourceAddress = null;
+    state.selectedRecipient = null;
+    state.amountDraft = null;
+    state.selectedOption = 'best';
+    state.selectedOptionUnrankable = false;
+    state.intentDirty = false;
+  }
+
+  function resetReviewFixtureContext(value) {
+    const mixedStates = ['exact-approval','allowance-reset','sufficient-allowance','mixed-pre','mixed-post','mixed-both'];
+    state.activeJourney = value === 'same-chain-native'
+      ? 'same-chain'
+      : mixedStates.includes(value)
+        ? 'mixed'
+        : value === 'fresh-recovery'
+          ? 'different-token'
+          : 'cross-chain';
+    state.selectedPay = null;
+    state.selectedReceive = null;
+    state.selectedSourceAddress = null;
+    state.selectedRecipient = null;
+    state.amountDraft = null;
+    state.selectedOption = 'best';
+    state.selectedOptionUnrankable = false;
+    state.activeWarnings = [];
+    state.intentDirty = false;
+  }
+
+  function applyPreviewSetting(setting, value) {
+    if (setting === 'viewport') updateState('viewport',value);
+    else if (setting === 'text-scale') updateState('scale',value === '200' ? 2 : 1);
+    else if (setting === 'motion') updateState('motion',value === 'reduced' ? 'reduced' : 'full');
+    else if (setting === 'theme') updateState('theme',value);
+  }
+
+  function resetAccessibilityTests() {
+    state.viewport = '390';
+    state.theme = 'dark';
+    state.scale = 1;
+    state.motion = 'full';
+    syncControls();
+    renderSection();
+    announce('Accessibility tests reset to 390 pixels, dark theme, 100 percent text, and standard motion');
+  }
+
   function updateState(key, value) {
+    if (key === 'entry') cancelInspectorTransition('entry');
+    if (['pickerFamily','pickerState'].includes(key)) cancelInspectorTransition('picker');
+    if (['activity','progressMode'].includes(key)) cancelInspectorTransition('activity');
     if (key === 'section') state.section = Number(value);
     else if (key === 'scale') state.scale = Number(value);
     else state[key] = value;
@@ -2212,13 +2633,17 @@
     if (key === 'pickerState' && value === 'stress-128') { state.selectedOption = 'best'; state.selectedOptionUnrankable=false; state.showRemainingOptions = false; }
     if (key === 'activity' && ['active','attention','completed'].includes(value)) state.activityReturnFilter=value;
     if (key === 'entry') {
+      cancelQuoteEvaluation();
+      resetEntryFixtureContext(value);
       const warningStates = {'high-price-impact':'high-price-impact','low-liquidity':'low-liquidity','price-estimate-unavailable':'price-estimate-unavailable'};
       state.activeWarnings = warningStates[value] ? [warningStates[value]] : [];
       state.executionConsent = null;
     }
     if (key === 'review') {
+      cancelQuoteEvaluation();
       state.executionConsent = null;
-      state.activeJourney = reviewConfig(value).fixtureId;
+      resetReviewFixtureContext(value);
+      state.reviewReturnState = ['revalidating','revalidation-failed','expired'].includes(value) ? 'cross-chain-native' : value;
     }
     if (key === 'recovery') {
       state.recoveryFeedback='';
@@ -2232,12 +2657,33 @@
     if (key === 'progressMode' && value === 'activity') state.activity = 'active';
     syncControls();
     renderSection();
+    if (key === 'entry' && value === 'checking') { beginQuoteEvaluation(); return; }
+    if (key === 'entry' && value === 'capabilities') {
+      scheduleInspectorTransition('entry',()=>{ if (state.entry==='capabilities') beginQuoteEvaluation(); });
+    }
+    if (key === 'review' && value === 'revalidating') { beginReviewRevalidation(); return; }
+    if (key === 'pickerState' && value === 'loading') {
+      const family = state.pickerFamily;
+      scheduleInspectorTransition('picker',()=>{
+        if (state.pickerFamily!==family || state.pickerState!=='loading') return;
+        state.pickerState = family === 'asset' ? 'my-assets' : family === 'address' ? 'list' : state.pickerState;
+        if (state.section===4) { renderSection();announce(family === 'asset' ? 'Assets loaded' : 'Addresses loaded'); }
+      });
+    }
+    if (key === 'pickerState' && value === 'validating' && state.pickerFamily === 'recipient') {
+      scheduleInspectorTransition('picker',()=>{ if (state.pickerFamily==='recipient' && state.pickerState==='validating') { state.pickerState='valid';if (state.section===4) { renderSection();announce('Recipient validation completed'); } } });
+    }
+    if (key === 'activity' && value === 'loading') {
+      scheduleInspectorTransition('activity',()=>{ if (state.progressMode==='activity' && state.activity==='loading') { state.activity='active';if (state.section===6) { renderSection();announce('Activity loaded'); } } });
+    }
   }
 
   tabs.addEventListener('click', event => {
     const button = event.target.closest('[data-section]');
     if (!button) return;
+    if (state.pendingStartAfterRevalidation) cancelQuoteEvaluation();
     state.flow = null;
+    cancelRecipientValidation();
     clearSurfaceHistory();
     updateState('section',button.dataset.section);
   });
@@ -2246,23 +2692,42 @@
     if (customerControl && handleCustomerAction(customerControl.dataset.action,customerControl)) return;
     const stateButton = event.target.closest('[data-state-key]');
     if (stateButton) { updateState(stateButton.dataset.stateKey,stateButton.dataset.stateValue); return; }
-    const viewport = event.target.closest('[data-set-viewport]');
-    if (viewport) { state.viewport = viewport.dataset.setViewport; viewportSelect.value = state.viewport; renderSection(); return; }
-    const scale = event.target.closest('[data-set-scale]');
-    if (scale) { state.scale = Number(scale.dataset.setScale); scaleSelect.value = String(state.scale); renderSection(); return; }
-    const motion = event.target.closest('[data-set-motion]');
-    if (motion) { state.motion = motion.dataset.setMotion; root.dataset.motion = state.motion; motionSelect.value = state.motion; renderSection(); return; }
-    const theme = event.target.closest('[data-set-theme]');
-    if (theme) { state.theme = theme.dataset.setTheme; root.dataset.theme = state.theme; themeSelect.value = state.theme; renderSection(); return; }
+    const previewSetting = event.target.closest('[data-preview-setting]');
+    if (previewSetting) { applyPreviewSetting(previewSetting.dataset.previewSetting,previewSetting.dataset.previewValue); return; }
+    if (event.target.closest('[data-a11y-action="reset"]')) { resetAccessibilityTests(); return; }
     const flowRun = event.target.closest('[data-flow-run]');
-    if (flowRun) { const flowDefinition=flows.find(item=>item.id===flowRun.dataset.flowRun); clearSurfaceHistory(); state.flow = flowRun.dataset.flowRun; state.flowStep = 0; state.activeJourney=flowDefinition?.fixture || 'cross-chain'; state.selectedExecutionId=flowDefinition?.id==='manual-revoke'?'route_manual_20da':journeyFixtures[state.activeJourney]?.executionId || null; state.selectedOption='best'; state.selectedOptionUnrankable=false; state.activeWarnings=[]; state.executionConsent=null; state.recipientValidationState=null; state.selectedPay=null; state.selectedReceive=null; state.selectedSourceAddress=null; state.selectedRecipient=null; state.recipientDraft=''; state.recoveryFeedback=''; state.supportSubmitted=false; renderSection(); return; }
-    if (event.target.closest('[data-flow-next]')) { const flow = flows.find(item=>item.id===state.flow); if (flow && state.flowStep<flow.steps.length-1) state.flowStep++; renderSection(); return; }
-    if (event.target.closest('[data-flow-back]')) { if (state.flowStep>0) state.flowStep--; renderSection(); return; }
-    if (event.target.closest('[data-flow-close]')) { state.flow = null; state.flowStep = 0; renderSection(); }
+    if (flowRun) { const flowDefinition=flows.find(item=>item.id===flowRun.dataset.flowRun); cancelQuoteEvaluation();cancelInspectorTransition();cancelRecipientValidation();clearSurfaceHistory(); state.flow = flowRun.dataset.flowRun; state.flowStep = 0; state.activeJourney=flowDefinition?.fixture || 'cross-chain'; state.selectedExecutionId=flowDefinition?.id==='manual-revoke'?'route_manual_20da':journeyFixtures[state.activeJourney]?.executionId || null; state.selectedOption='best'; state.selectedOptionUnrankable=false; state.activeWarnings=[]; state.executionConsent=null; state.recipientValidationState=null; state.selectedPay=null; state.selectedReceive=null; state.selectedSourceAddress=null; state.selectedRecipient=null; state.recipientDraft=''; state.recoveryFeedback=''; state.supportSubmitted=false; renderSection(); syncFlowAsyncState(); return; }
+    if (event.target.closest('[data-flow-next]')) { const flow = flows.find(item=>item.id===state.flow); if (flow && state.flowStep<flow.steps.length-1) state.flowStep++; renderSection(); syncFlowAsyncState(); return; }
+    if (event.target.closest('[data-flow-back]')) { if (state.flowStep>0) state.flowStep--; renderSection(); syncFlowAsyncState(); return; }
+    if (event.target.closest('[data-flow-close]')) { cancelRecipientValidation();state.flow = null; state.flowStep = 0; renderSection(); }
   });
 
   main.addEventListener('input', event => {
-    if (event.target.matches('#gus-recipient-input')) { state.recipientDraft=event.target.value; state.recipientValidationState=null; return; }
+    if (event.target.matches('#gus-recipient-input')) {
+      const value = event.target.value;
+      const wasValidating = state.pickerState === 'validating' || state.recipientValidationState === 'validating';
+      const flow = flows.find(item=>item.id===state.flow);
+      const editingScriptedValidation = flow?.id==='external-recipient' && flow.steps[state.flowStep]?.[2]==='recipient:validating';
+      cancelRecipientValidation();
+      cancelInspectorTransition('picker');
+      state.recipientDraft=value;
+      state.recipientValidationState=null;
+      if (editingScriptedValidation) {
+        state.flow=null;
+        state.flowStep=0;
+        state.section=4;
+        state.pickerFamily='recipient';
+        state.customerSurface='recipient';
+        state.pickerState='pasted';
+      } else if (wasValidating) {
+        state.pickerState='pasted';
+      }
+      if (wasValidating || editingScriptedValidation) {
+        renderSection();
+        requestAnimationFrame(()=>{const input=main.querySelector('#gus-recipient-input');if(input){input.focus({preventScroll:true});input.setSelectionRange(value.length,value.length);}});
+      }
+      return;
+    }
     if (event.target.matches('[data-action="search-assets"]')) {
       state.assetQuery=event.target.value; state.pickerState=state.assetQuery?'search':'my-assets'; renderSection();
       requestAnimationFrame(()=>{const input=main.querySelector('[data-action="search-assets"]');if(input){input.focus();input.setSelectionRange(input.value.length,input.value.length);}}); return;
@@ -2274,14 +2739,22 @@
     if (!event.target.matches('.wallet-amount-input')) return;
     const value=event.target.value.trim();
     state.flow=null; state.amountDraft=value; clearSurfaceHistory(); state.section=3; state.activeWarnings=[];
-    if (!value) state.entry='blank';
-    else if (!/^\d+(\.\d+)?$/.test(value)) state.entry='malformed';
-    else if (Number(value)===0) state.entry='zero';
-    else state.entry='checking';
-    renderSection();
+    state.selectedOption='best'; state.selectedOptionUnrankable=false;
+    if (!value) { cancelQuoteEvaluation(); state.entry='blank'; renderSection(); }
+    else if (!/^\d+(\.\d+)?$/.test(value)) { cancelQuoteEvaluation(); state.entry='malformed'; renderSection(); }
+    else if (Number(value)===0) { cancelQuoteEvaluation(); state.entry='zero'; renderSection(); }
+    else {
+      const fixture = journeyFixtures[state.activeJourney] || journeyFixtures['cross-chain'];
+      const amount = Number(value);
+      const minimum = fixture.pay.asset === 'ETH' ? .002 : 1;
+      const selectedBalance = state.selectedSourceAddress?.balances?.[fixture.pay.asset]?.[0] || state.selectedSourceAddress?.balance || fixture.pay.balance;
+      const addressBalance = numericAmount(selectedBalance) || Number.POSITIVE_INFINITY;
+      const available = fixture.pay.asset === 'ETH' ? Math.max(0,addressBalance-.009) : addressBalance;
+      if (amount < minimum) { cancelQuoteEvaluation();state.entry='below-minimum';renderSection(); }
+      else if (amount > available) { cancelQuoteEvaluation();state.entry='insufficient';renderSection(); }
+      else beginQuoteEvaluation();
+    }
     requestAnimationFrame(()=>{const input=main.querySelector('.wallet-amount-input');if(input){input.focus({preventScroll:true});input.setSelectionRange(value.length,value.length);}});
-    announce('Amount changed; previous quote invalidated');
-    if(state.entry==='checking') { const fixture=journeyFixtures[state.activeJourney]||journeyFixtures['cross-chain'];const sameAmount=Number(String(value).replaceAll(',',''))===Number(String(fixture.pay.amount).replaceAll(',',''));scheduleQuoteResult(state.selectedPay||state.selectedReceive||!sameAmount?'no-route':state.activeJourney==='same-chain'?'quoted-single':'quoted-multiple'); }
   });
 
   document.addEventListener('keydown', event => {
